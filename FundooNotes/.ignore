@@ -1,0 +1,11 @@
+# .gitignore
+### Python template
+
+# Unit test / coverage reports
+.idea
+*.log
+db.sqlite3
+venv
+# Environments
+.env
+Fundoonotes.postman_collection.json
