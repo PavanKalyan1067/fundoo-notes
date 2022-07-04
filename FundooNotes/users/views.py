@@ -1,19 +1,30 @@
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
 from rest_framework import generics, status, permissions
-from users.serializers import RegisterSerializer, SetNewPasswordSerializer, ResetPasswordEmailRequestSerializer, \
-    LoginSerializer, LogoutSerializer
+from rest_framework.permissions import IsAuthenticated
+
+from users.exceptions import PasswordDidntMatched, PasswordPatternMatchError, UsernameAlreadyExistsError, \
+    EmailAlreadyExistsError
+from users.serializers import RegisterSerializer, SetNewPasswordSerializer, \
+    LoginSerializer, LogoutSerializer, EmailVerificationSerializer, \
+    UserPasswordResetSerializer, PasswordResetSerializer
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from users.models import User
 import jwt
-from django.conf import settings
 from users.renderers import UserRenderer
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.utils.encoding import smart_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
+
+from users.status import response_code
 from users.utils import Util
 from django.conf import settings
+
+from users.validate import validate_password_match, validate_password_pattern_match, \
+    validate_duplicat_username_existance, validate_duplicate_email_existance
 
 
 class RegisterView(generics.GenericAPIView):
@@ -22,6 +33,29 @@ class RegisterView(generics.GenericAPIView):
 
     def post(self, request):
         user = request.data
+        username = request.data.get('username')
+        email = request.data.get('email')
+        password = request.data.get('password')
+        confirm_password = request.data.get('confirm_password')
+        try:
+            validate_email(email)
+        except ValidationError:
+            return Response({'code': 404, 'msg': response_code[404]})
+        try:
+            validate_password_match(password, confirm_password)
+            validate_password_pattern_match(password)
+        except PasswordDidntMatched as e:
+            return Response({"code": e.code, "msg": e.msg})
+        except PasswordPatternMatchError as e:
+            return Response({"code": e.code, "msg": e.msg})
+        try:
+            validate_duplicat_username_existance(username)
+        except UsernameAlreadyExistsError as e:
+            return Response({"code": e.code, "msg": e.msg})
+        try:
+            validate_duplicate_email_existance(email)
+        except EmailAlreadyExistsError as e:
+            return Response({"code": e.code, "msg": e.msg})
         serializer = self.serializer_class(data=user)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -35,14 +69,12 @@ class RegisterView(generics.GenericAPIView):
                      ' Use the link below to verify your email \n' + absurl
         data = {'email_body': email_body, 'to_email': user.email,
                 'email_subject': 'Verify your email'}
-
         Util.send_email(data)
-        return Response(data, status=status.HTTP_201_CREATED)
+        return Response(data, {'code': 200, 'msg': response_code[200]})
 
 
-# class alldata()
 class VerifyEmail(generics.GenericAPIView):
-    # serializer_class = EmailVerificationSerializer
+    serializer_class = EmailVerificationSerializer
 
     def get(self, request):
         token = request.GET.get('token')
@@ -50,14 +82,14 @@ class VerifyEmail(generics.GenericAPIView):
             payload = jwt.decode(jwt=token, key=settings.SECRET_KEY, algorithms=['HS256'])
             print('payload 1 ' + str(payload))
             user = User.objects.get(id=payload['user_id'])
-            if not user.is_active:
-                user.is_active = True
+            if not user.is_verified:
+                user.is_verified = True
                 user.save()
-            return Response({'email': 'Successfully activated'}, status=status.HTTP_200_OK)
+            return Response({'code': 302, 'msg': response_code[302]})
         except jwt.ExpiredSignatureError as e:
-            return Response({'error': 'Activations link expired'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'code': 304, 'msg': response_code[304]})
         except jwt.exceptions.DecodeError as e:
-            return Response({'error': 'Invalid Token'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'code': 307, 'msg': response_code[307]})
 
 
 class LoginAPIView(generics.GenericAPIView):
@@ -69,42 +101,22 @@ class LoginAPIView(generics.GenericAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class RequestPasswordResetEmail(generics.GenericAPIView):
-    serializer_class = ResetPasswordEmailRequestSerializer
+class PasswordResetEmailAPIView(generics.GenericAPIView):
+    renderer_classes = [UserRenderer]
 
     def post(self, request):
-        serializer = self.serializer_class(data=request.data)
-
-        email = request.data.get('email', '')
-
-        if User.objects.filter(email=email).exists():
-            user = User.objects.get(email=email)
-            uidb64 = urlsafe_base64_encode(smart_bytes(user.id))
-            token = PasswordResetTokenGenerator().make_token(user)
-            current_site = get_current_site(
-                request=request).domain
-            relativeLink = reverse(
-                'password-reset-confirm', kwargs={'uidb64': uidb64, 'token': token})
-
-            redirect_url = request.data.get('redirect_url', '')
-            absurl = 'http://' + current_site + relativeLink
-            email_body = 'Hello, \n Use link below to reset your password  \n' + \
-                         absurl + "?redirect_url=" + redirect_url
-            data = {'email_body': email_body, 'to_email': user.email,
-                    'email_subject': 'Reset your password', 'success': 'We have sent you a link to reset your password'}
-            Util.send_email(data)
-        return Response(data, status=status.HTTP_200_OK)
+        serializer = PasswordResetSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        return Response({'code': 309, 'msg': response_code[309]})
 
 
 class SetNewPasswordAPIView(generics.GenericAPIView):
-    serializer_class = SetNewPasswordSerializer
+    renderer_classes = [UserRenderer]
 
-    def patch(self, request):
-        serializer = self.serializer_class(data=request.data)
+    def post(self, request, uid, token):
+        serializer = UserPasswordResetSerializer(data=request.data, context={'uid': uid, 'token': token})
         serializer.is_valid(raise_exception=True)
-        response = ({'success': True,
-                     'message': 'Password reset success'})
-        return Response(response, status=status.HTTP_200_OK)
+        return Response({'code': 308, 'msg': response_code[308]})
 
 
 class LogoutAPIView(generics.GenericAPIView):

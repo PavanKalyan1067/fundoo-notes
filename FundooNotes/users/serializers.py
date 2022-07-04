@@ -1,35 +1,57 @@
 from rest_framework import serializers
+from rest_framework.response import Response
 from .models import User
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.utils.encoding import smart_str, force_str, smart_bytes, DjangoUnicodeDecodeError
+from django.utils.encoding import smart_str, force_str, force_bytes, DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(
-        max_length=68, min_length=6, write_only=True)
+    password = serializers.CharField(max_length=68, min_length=6, style={'input_type': 'password'}, write_only=True)
+    confirm_password = serializers.CharField(max_length=68, min_length=6, style={'input_type': 'password'},
+                                             write_only=True)
 
     default_error_messages = {
         'username': 'The username should only contain alphanumeric characters'}
 
     class Meta:
         model = User
-        fields = ['email', 'username', 'password']
+        fields = [
+            'id',
+            'username',
+            'first_name',
+            'last_name',
+            'email',
+            'password',
+            'confirm_password',
+        ]
 
-    def validate(self, attrs):
-        email = attrs.get('email', '')
-        username = attrs.get('username', '')
+        extra_kwargs = {'password': {'write_only': True}}
 
-        if not username.isalnum():
-            raise serializers.ValidationError(
-                self.default_error_messages)
-        return attrs
+        required_fields = [
+            'first_name',
+            'last_name',
+            'username',
+            'email',
+            'password',
+            'confirm_password'
+        ]
 
-    def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
+        read_only_fields = ["id"]
+
+        def validate(self, attrs):
+            email = attrs.get('email', '')
+            username = attrs.get('username', '')
+
+            if not username.isalnum():
+                raise serializers.ValidationError(self)
+            return attrs
+
+        def create(self, validated_data):
+            return User.objects.create_user(**validated_data)
 
 
 class EmailVerificationSerializer(serializers.ModelSerializer):
@@ -61,73 +83,8 @@ class LoginSerializer(serializers.ModelSerializer):
         model = User
         fields = ['email', 'password', 'username', 'tokens']
 
-    def validate(self, attrs):
-        email = attrs.get('email', '')
-        password = attrs.get('password', '')
-        filtered_user_by_email = User.objects.filter(email=email)
-        user = auth.authenticate(email=email, password=password)
 
-        if filtered_user_by_email.exists() and filtered_user_by_email[0].auth_provider != 'email':
-            raise AuthenticationFailed(
-                detail='Please continue your login using ' + filtered_user_by_email[0].auth_provider)
-
-        if not user:
-            raise AuthenticationFailed('Invalid credentials, try again')
-        if not user.is_active:
-            raise AuthenticationFailed('Account disabled, contact admin')
-        if not user.is_verified:
-            raise AuthenticationFailed('Email is not verified')
-
-        return {
-            'email': user.email,
-            'username': user.username,
-            'tokens': user.tokens
-        }
-
-        return super().validate(attrs)
-
-
-class ResetPasswordEmailRequestSerializer(serializers.Serializer):
-    email = serializers.EmailField(min_length=2)
-
-    redirect_url = serializers.CharField(max_length=500, required=False)
-
-    class Meta:
-        fields = ['email']
-
-
-class SetNewPasswordSerializer(serializers.Serializer):
-    password = serializers.CharField(
-        min_length=6, max_length=68, write_only=True)
-    token = serializers.CharField(
-        min_length=1, write_only=True)
-    uidb64 = serializers.CharField(
-        min_length=1, write_only=True)
-
-    class Meta:
-        fields = ['password', 'token', 'uidb64']
-
-    def validate(self, attrs):
-        try:
-            password = attrs.get('password')
-            token = attrs.get('token')
-            uidb64 = attrs.get('uidb64')
-
-            id = force_str(urlsafe_base64_decode(uidb64))
-            user = User.objects.get(id=id)
-            if not PasswordResetTokenGenerator().check_token(user, token):
-                raise AuthenticationFailed('The reset link is invalid', 401)
-
-            user.set_password(password)
-            user.save()
-
-            return (user)
-        except Exception as e:
-            raise AuthenticationFailed('The reset link is invalid', 401)
-        return super().validate(attrs)
-
-
-class LogoutSerializer(serializers.Serializer):
+class LogoutSerializer(serializers.ModelSerializer):
     refresh = serializers.CharField()
 
     default_error_message = {
@@ -145,3 +102,67 @@ class LogoutSerializer(serializers.Serializer):
 
         except TokenError:
             self.fail('bad_token')
+
+
+class ForgotSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+
+class PasswordResetSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(max_length=255)
+
+    class Meta:
+        model = User
+        fields = ['email']
+
+    def validate(self, attrs):
+        email = attrs.get('email')
+        if User.objects.filter(email=email).exists():
+            user = User.objects.get(email=email)
+            uid = urlsafe_base64_encode(force_bytes(user.id))
+            # print('Encoded UID', uid)
+            token = PasswordResetTokenGenerator().make_token(user)
+            # print('Password Reset Token', token)
+            link = 'http://127.0.0.1:8000/api/reset-password/' + uid + '/' + token
+            # print('Password Reset Link', link)
+            # Send EMail
+            body = 'Click Following Link to Reset Your Password ' + link
+            data = {
+                'subject': 'Reset Your Password',
+                'body': body,
+                'to_email': user.email
+            }
+            print(data)
+            # Util.send_email(data)
+            return Response(data)
+        # else:
+        #     raise serializers.ValidationError('You are not a Registered User')
+
+
+class UserPasswordResetSerializer(serializers.Serializer):
+    password = serializers.CharField(max_length=255, style={'input_type': 'password'}, write_only=True)
+    confirm_password = serializers.CharField(max_length=255, style={'input_type': 'password'}, write_only=True)
+
+    class Meta:
+        fields = ['password', 'confirm_password']
+
+    def validate(self, attrs):
+        try:
+            password = attrs.get('password')
+            confirm_password = attrs.get('confirm_password')
+            uid = self.context.get('uid')
+            token = self.context.get('token')
+            if password != confirm_password:
+                raise serializers.ValidationError("Password and Confirm Password doesn't match")
+            id = smart_str(urlsafe_base64_decode(uid))
+            user = User.objects.get(id=id)
+            if not PasswordResetTokenGenerator().check_token(user, token):
+                raise serializers.ValidationError('Token is not Valid or Expired')
+            user.set_password(password)
+            user.save()
+            return attrs
+        except DjangoUnicodeDecodeError as identifier:
+            PasswordResetTokenGenerator().check_token(user, token)
+            raise serializers.ValidationError('Token is not Valid or Expired')
