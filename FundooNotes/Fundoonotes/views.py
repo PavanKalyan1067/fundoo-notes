@@ -43,12 +43,14 @@ class RetrieveAPIView(APIView):
                 'success': False,
                 'message': response_code[307]
             }
+            logger.exception(e)
             return Response(response)
         except Exception as e:
             response = {
                 'success': False,
                 'message': response_code[416],
             }
+            logger.exception(e)
             return Response(response)
 
 
@@ -72,12 +74,14 @@ class CreateAPIView(APIView):
                 'success': False,
                 'message': response_code[308],
             }
+            logger.exception(e)
             return Response(response)
         except Exception as e:
             response = {
                 'success': False,
                 'message': response_code[416],
             }
+            logger.exception(e)
             return Response(response)
 
 
@@ -100,24 +104,28 @@ class UpdateAPIView(APIView):
                 'success': False,
                 'message': response_code[416],
             }
-        except DoesNotExist as e:
-            response = {
-                'success': False,
-                'message': response_code[307]
-            }
+            logger.exception(e)
             return Response(response)
         except ValidationError as e:
             response = {
                 'success': False,
                 'message': response_code[308],
             }
+            logger.exception(e)
+            return Response(response)
+        except DoesNotExist as e:
+            response = {
+                'success': False,
+                'message': response_code[307]
+            }
+            logger.exception(e)
             return Response(response)
 
 
 class DeleteAPIView(APIView):
     def delete(self, request, ):
         try:
-            data = Notes.objects.get(pk=2)
+            data = Notes.objects.get(pk=4)
             data.delete()
             response = {
                 'success': True,
@@ -129,10 +137,12 @@ class DeleteAPIView(APIView):
                 'success': False,
                 'message': response_code[307]
             }
+            logger.exception(e)
             return Response(response)
         except Exception as e:
             response = {
                 'success': False,
                 'message': response_code[416],
             }
-        return Response(response)
+            logger.exception(e)
+            return Response(response)
