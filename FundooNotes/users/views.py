@@ -1,10 +1,7 @@
-from django.contrib import auth
-from django.contrib.auth import authenticate, login
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from rest_framework import generics, status, permissions
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework_simplejwt.exceptions import AuthenticationFailed
 
 from users.exceptions import (PasswordDidntMatched,
                               PasswordPatternMatchError,
@@ -37,7 +34,7 @@ from users.utils import Util, get_object_by_username, get_object_by_email
 from django.conf import settings
 
 from users.validate import validate_password_match, validate_password_pattern_match, \
-    validate_duplicat_username_existence, validate_duplicate_email_existence
+    validate_duplicat_username_existance, validate_duplicate_email_existance
 
 
 class RegisterView(generics.GenericAPIView):
@@ -62,11 +59,11 @@ class RegisterView(generics.GenericAPIView):
         except PasswordPatternMatchError as e:
             return Response({"code": e.code, "msg": e.msg})
         try:
-            validate_duplicat_username_existence(username)
+            validate_duplicat_username_existance(username)
         except UsernameAlreadyExistsError as e:
             return Response({"code": e.code, "msg": e.msg})
         try:
-            validate_duplicate_email_existence(email)
+            validate_duplicate_email_existance(email)
         except EmailAlreadyExistsError as e:
             return Response({"code": e.code, "msg": e.msg})
         serializer = self.serializer_class(data=user)
@@ -83,12 +80,7 @@ class RegisterView(generics.GenericAPIView):
         data = {'email_body': email_body, 'to_email': user.email,
                 'email_subject': 'Verify your email'}
         Util.send_email(data)
-        response = {
-            'success': True,
-            'message': response_code[200],
-            'data': data,
-        }
-        return Response(response)
+        return Response(data, {'code': 200, 'msg': response_code[200]})
 
 
 class VerifyEmail(generics.GenericAPIView):
@@ -103,11 +95,7 @@ class VerifyEmail(generics.GenericAPIView):
             if not user.is_verified:
                 user.is_verified = True
                 user.save()
-            response = {
-                    'success': True,
-                    'message': response_code[200],
-                }
-            return Response(response)
+            return Response({'code': 302, 'msg': response_code[302]})
         except jwt.ExpiredSignatureError as e:
             return Response({'code': 304, 'msg': response_code[304]})
         except jwt.exceptions.DecodeError as e:
@@ -118,27 +106,8 @@ class LoginAPIView(generics.GenericAPIView):
     serializer_class = LoginSerializer
 
     def post(self, request):
-        if request.user.is_authenticated:
-            return Response({'code': 410, 'msg': response_code[410]})
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        email = request.data.get('email', '')
-        password = request.data.get('password', '')
-        # filtered_user_by_email = User.objects.filter(email=email)
-        user = authenticate(request,email=email, password=password)
-
-        # if filtered_user_by_email.exists() and filtered_user_by_email[0].authenticated != 'email':
-        #     raise AuthenticationFailed(
-        #         detail='Please continue your login using ' + filtered_user_by_email[0].authenticated)
-
-        # if not user:
-        #     raise AuthenticationFailed('Invalid credentials, try again')
-        if user is not None:
-            if user is not user.is_active:
-                raise AuthenticationFailed('Account disabled, contact admin')
-            if user is user.is_verified:
-                raise AuthenticationFailed('Email is not verified')
-
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
@@ -205,4 +174,4 @@ class ForgotPasswordResetAPIView(generics.GenericAPIView):
                 'email_subject': 'Verify your email'}
         print(data)
         Util.send_email(data)
-        return Response(data, {'msg': response_code[200]})
+        return Response(data,{'msg': response_code[200]})
