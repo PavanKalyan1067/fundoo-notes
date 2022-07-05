@@ -10,7 +10,7 @@ from rest_framework.response import Response
 from users.models import User
 from .logger import get_logger
 from .models import Notes
-
+from Fundoonotes.exceptions import DoesNotExist, validate_time
 # Create your views here.
 from rest_framework.views import APIView
 
@@ -22,7 +22,7 @@ logger = get_logger()
 from datetime import datetime
 from rest_framework.exceptions import PassedTimeException
 
-from Fundoonotes.Response import validate_time, response_code
+from Fundoonotes.Response import response_code
 
 
 class RetrieveAPIView(APIView):
@@ -37,7 +37,13 @@ class RetrieveAPIView(APIView):
                 'message': response_code[200],
                 'data': serialized_data,
             }
-            return Response(response, )
+            return Response(response)
+        except DoesNotExist as e:
+            response = {
+                'success': False,
+                'message': response_code[307]
+            }
+            return Response(response)
         except Exception as e:
             response = {
                 'success': False,
@@ -60,6 +66,12 @@ class CreateAPIView(APIView):
                 'message': response_code[201],
                 'data': {'notes_list': data}
             },
+            return Response(response)
+        except ValidationError as e:
+            response={
+                'success': False,
+                'message': response_code[308],
+            }
             return Response(response)
         except Exception as e:
             response = {
@@ -88,7 +100,18 @@ class UpdateAPIView(APIView):
                 'success': False,
                 'message': response_code[416],
             }
-        return Response(response)
+        except DoesNotExist as e:
+            response = {
+                'success': False,
+                'message': response_code[307]
+            }
+            return Response(response)
+        except ValidationError as e:
+            response = {
+                'success': False,
+                'message': response_code[308],
+            }
+            return Response(response)
 
 
 class DeleteAPIView(APIView):
@@ -99,6 +122,12 @@ class DeleteAPIView(APIView):
             response = {
                 'success': True,
                 'message': response_code[200],
+            }
+            return Response(response)
+        except DoesNotExist as e:
+            response = {
+                'success': False,
+                'message': response_code[307]
             }
             return Response(response)
         except Exception as e:
