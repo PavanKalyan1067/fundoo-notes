@@ -1,13 +1,23 @@
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from rest_framework import generics, status, permissions
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
-from users.exceptions import PasswordDidntMatched, PasswordPatternMatchError, UsernameAlreadyExistsError, \
-    EmailAlreadyExistsError
-from users.serializers import RegisterSerializer, SetNewPasswordSerializer, \
-    LoginSerializer, LogoutSerializer, EmailVerificationSerializer, \
-    UserPasswordResetSerializer, PasswordResetSerializer
+from users.exceptions import (PasswordDidntMatched,
+                              PasswordPatternMatchError,
+                              UsernameAlreadyExistsError,
+                              EmailAlreadyExistsError
+                              )
+
+from users.serializers import (RegisterSerializer,
+                               LoginSerializer,
+                               LogoutSerializer,
+                               EmailVerificationSerializer,
+                               UserPasswordResetSerializer,
+                               PasswordResetSerializer,
+                               UserProfileSerializer, ForgotPasswordSerializer
+                               )
+
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from users.models import User
@@ -20,7 +30,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 
 from users.status import response_code
-from users.utils import Util
+from users.utils import Util, get_object_by_username, get_object_by_email
 from django.conf import settings
 
 from users.validate import validate_password_match, validate_password_pattern_match, \
@@ -130,3 +140,38 @@ class LogoutAPIView(generics.GenericAPIView):
         serializer.save()
         response = ({'msg:Logout Successfully!!'})
         return Response(response, status=status.HTTP_204_NO_CONTENT)
+
+
+class UserProfileView(generics.GenericAPIView):
+    renderer_classes = [UserRenderer]
+    permission_classes = [IsAuthenticated]
+    serializer_class = RegisterSerializer
+    user = User.objects.all()
+
+    def get(self, request):
+        if not request.user.is_authenticated:
+            return Response({'code': 413, 'msg': response_code[413]})
+        user = User.objects.all()
+        allUser = RegisterSerializer(user, many=True)
+        return Response({'data': allUser.data, 'code': 200, 'msg': response_code[200]})
+
+
+class ForgotPasswordResetAPIView(generics.GenericAPIView):
+    def post(self, request):
+        serializer = ForgotPasswordSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        # serializer.save()
+        user = get_object_by_email(serializer.data.get('email'))
+        # user_email = user.email
+        # user = User.objects.get(email=user.email['email'])
+        token = RefreshToken.for_user(user).access_token
+        current_site = get_current_site(request).domain
+        relativeLink = reverse('email-verify')
+        absurl = 'http://' + current_site + relativeLink + "?token=" + str(token)
+        email_body = 'Hi ' + user.username + \
+                     ' Use the link below to reset your password \n' + absurl
+        data = {'email_body': email_body, 'to_email': user.email,
+                'email_subject': 'Verify your email'}
+        print(data)
+        Util.send_email(data)
+        return Response(data,{'msg': response_code[200]})
