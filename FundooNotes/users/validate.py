@@ -1,10 +1,10 @@
-from .exceptions import(
+from .exceptions import (
     PasswordDidntMatched,
     PasswordPatternMatchError,
     UsernameAlreadyExistsError,
     EmailAlreadyExistsError,
     UsernameDoesNotExistsError
-    )
+)
 from .status import response_code
 from django.contrib.auth import get_user_model
 
