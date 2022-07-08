@@ -1,22 +1,28 @@
+from django.contrib.auth import authenticate, login
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from rest_framework import generics, status, permissions
+from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
-from users.exceptions import (PasswordDidntMatched,
-                              PasswordPatternMatchError,
-                              UsernameAlreadyExistsError,
-                              EmailAlreadyExistsError
-                              )
+from Fundoonotes.exceptions import UsernameDoesNotExistsError
+from users.exceptions import (
+    PasswordDidntMatched,
+    PasswordPatternMatchError,
+    UsernameAlreadyExistsError,
+    EmailAlreadyExistsError
+)
 
-from users.serializers import (RegisterSerializer,
-                               LoginSerializer,
-                               LogoutSerializer,
-                               EmailVerificationSerializer,
-                               UserPasswordResetSerializer,
-                               PasswordResetSerializer,
-                               UserProfileSerializer, ForgotPasswordSerializer
-                               )
+from users.serializers import (
+    RegisterSerializer,
+    LoginSerializer,
+    LogoutSerializer,
+    EmailVerificationSerializer,
+    UserPasswordResetSerializer,
+    ForgotPasswordSerializer,
+    UserProfileSerializer,
+    ResetPasswordSerializer1,
+)
 
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -34,7 +40,7 @@ from users.utils import Util, get_object_by_username, get_object_by_email
 from django.conf import settings
 
 from users.validate import validate_password_match, validate_password_pattern_match, \
-    validate_duplicat_username_existance, validate_duplicate_email_existance
+    validate_duplicate_username_existence, validate_duplicate_email_existence, validate_user_does_not_exists
 
 
 class RegisterView(generics.GenericAPIView):
@@ -59,11 +65,11 @@ class RegisterView(generics.GenericAPIView):
         except PasswordPatternMatchError as e:
             return Response({"code": e.code, "msg": e.msg})
         try:
-            validate_duplicat_username_existance(username)
+            validate_duplicate_username_existence(username)
         except UsernameAlreadyExistsError as e:
             return Response({"code": e.code, "msg": e.msg})
         try:
-            validate_duplicate_email_existance(email)
+            validate_duplicate_username_existence(email)
         except EmailAlreadyExistsError as e:
             return Response({"code": e.code, "msg": e.msg})
         serializer = self.serializer_class(data=user)
@@ -80,7 +86,7 @@ class RegisterView(generics.GenericAPIView):
         data = {'email_body': email_body, 'to_email': user.email,
                 'email_subject': 'Verify your email'}
         Util.send_email(data)
-        return Response(data, {'code': 200, 'msg': response_code[200]})
+        return Response({'data': data, 'code': 200, 'msg': response_code[200]})
 
 
 class VerifyEmail(generics.GenericAPIView):
@@ -108,14 +114,15 @@ class LoginAPIView(generics.GenericAPIView):
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
+
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class PasswordResetEmailAPIView(generics.GenericAPIView):
+class ForgotPasswordResetEmailAPIView(generics.GenericAPIView):
     renderer_classes = [UserRenderer]
 
     def post(self, request):
-        serializer = PasswordResetSerializer(data=request.data)
+        serializer = ForgotPasswordSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         return Response({'code': 309, 'msg': response_code[309]})
 
@@ -132,12 +139,14 @@ class SetNewPasswordAPIView(generics.GenericAPIView):
 class LogoutAPIView(generics.GenericAPIView):
     serializer_class = LogoutSerializer
 
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.AllowAny,)
 
     def post(self, request):
-        serializer = self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
+        RefreshToken(request.data.get('refresh')).blacklist()
+
+        # serializer.is_valid(raise_exception=True)
+        # print(serializer.validated_data)
+        # serializer.save()
         response = ({'msg:Logout Successfully!!'})
         return Response(response, status=status.HTTP_204_NO_CONTENT)
 
@@ -155,23 +164,3 @@ class UserProfileView(generics.GenericAPIView):
         allUser = RegisterSerializer(user, many=True)
         return Response({'data': allUser.data, 'code': 200, 'msg': response_code[200]})
 
-
-class ForgotPasswordResetAPIView(generics.GenericAPIView):
-    def post(self, request):
-        serializer = ForgotPasswordSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        # serializer.save()
-        user = get_object_by_email(serializer.data.get('email'))
-        # user_email = user.email
-        # user = User.objects.get(email=user.email['email'])
-        token = RefreshToken.for_user(user).access_token
-        current_site = get_current_site(request).domain
-        relativeLink = reverse('email-verify')
-        absurl = 'http://' + current_site + relativeLink + "?token=" + str(token)
-        email_body = 'Hi ' + user.username + \
-                     ' Use the link below to reset your password \n' + absurl
-        data = {'email_body': email_body, 'to_email': user.email,
-                'email_subject': 'Verify your email'}
-        print(data)
-        Util.send_email(data)
-        return Response(data,{'msg': response_code[200]})
