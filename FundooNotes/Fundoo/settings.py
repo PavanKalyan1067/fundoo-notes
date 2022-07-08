@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Fundoonotes',
     'labels',
     'users',
+    'rest_framework_simplejwt.token_blacklist',
     # 'drf_api_logger',
 ]
 
@@ -108,10 +109,14 @@ DATABASES = {
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'users.backends.JWTAuthentication',
-
     ],
 }
+SIMPLE_JWT = {
+    'USER_ID_FIELD': 'user_id'
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
