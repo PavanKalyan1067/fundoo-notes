@@ -24,7 +24,7 @@ def validate_password_pattern_match(password):
         raise PasswordPatternMatchError(code=406, msg=response_code[406])
 
 
-def validate_duplicat_username_existence(username):
+def validate_duplicate_username_existence(username):
     if User.objects.filter(username=username).exists():
         raise UsernameAlreadyExistsError(code=401, msg=response_code[401])
 
