@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate
 from rest_framework import serializers
 from rest_framework.response import Response
 
@@ -64,50 +65,8 @@ class EmailVerificationSerializer(serializers.ModelSerializer):
         fields = ['token']
 
 
-class LoginSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(max_length=255, min_length=3)
-    password = serializers.CharField(
-        max_length=68, min_length=6, write_only=True)
-    username = serializers.CharField(
-        max_length=255, min_length=3, read_only=True)
-    tokens = serializers.SerializerMethodField()
-
-    def get_tokens(self, obj):
-        user = User.objects.get(email=obj['email'])
-
-        return {
-            'refresh': user.tokens()['refresh'],
-            'access': user.tokens()['access']
-        }
-
-    class Meta:
-        model = User
-        fields = ['email', 'password', 'username', 'tokens']
-
-    # def validate(self, data):
-    #    email = data.get('email', '')
-    #    password = data.get('password', '')
-    #
-    #    user = auth.authenticate(email=email, password=password)
-    #    if User.objects.filter(email=email).exists():
-    #        if user is user:
-    #            # raise AuthenticationFailed('Invalid credentials, try again')
-    #            if not user.is_active:
-    #                raise AuthenticationFailed('Account disabled, contact admin')
-    #            if not user.is_verified:
-    #                raise AuthenticationFailed('Email is not verified')
-    #
-    #    # return {
-    #    #     'email': user.email,
-    #    #     'username': user.username,
-    #    #     'tokens': user.tokens
-    #    # }
-    #    return super().validate(data)
-
-
 class LogoutSerializer(serializers.ModelSerializer):
     refresh = serializers.CharField()
-
 
     default_error_message = {
         'bad_token': 'Token is expired or invalid'
@@ -191,12 +150,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = ['id', 'email', 'name']
 
 
-# class ForgotPasswordSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ['email']
-
-
 class ResetPasswordSerializer1(serializers.ModelSerializer):
     password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
     confirm_password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
@@ -207,3 +160,44 @@ class ResetPasswordSerializer1(serializers.ModelSerializer):
             'password',
             'confirm_password'
         ]
+
+
+class LoginSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(max_length=255, min_length=3)
+    password = serializers.CharField(
+        max_length=68, min_length=6, write_only=True)
+    username = serializers.CharField(
+        max_length=255, min_length=3, read_only=True)
+
+    tokens = serializers.SerializerMethodField()
+
+    def get_tokens(self, obj):
+        user = User.objects.get(email=obj['email'])
+
+        return {
+            'refresh': user.tokens()['refresh'],
+            'access': user.tokens()['access']
+        }
+
+    class Meta:
+        model = User
+        fields = ['email', 'password', 'username', 'tokens']
+
+    def validate(self, request):
+        email = request.get('email', '')
+        password = request.get('password', '')
+        user_obj = authenticate(request, email=email, password=password)
+
+        if user_obj is not None:
+            # raise AuthenticationFailed('Invalid credentials, try again')
+            if User is not user_obj.is_active:
+                raise AuthenticationFailed('Account disabled, contact admin')
+            if User is not user_obj.is_verified:
+                 raise AuthenticationFailed('Email is not verified')
+        return {'email': email}
+
+        # return {
+        #     'email': user.email,
+        #     'username': user.username,
+        #     'tokens': user.tokens
+        # }
