@@ -30,7 +30,11 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    password = models.CharField(max_length=68)
+    confirm_password = models.CharField(max_length=6)
     username = models.CharField(max_length=255, unique=True, db_index=True)
+    first_name = models.CharField(max_length=255, unique=True)
+    last_name = models.CharField(max_length=255, unique=True)
     email = models.EmailField(max_length=255, unique=True, db_index=True)
     otp = models.CharField(max_length=6, null=True, blank=True)
     is_verified = models.BooleanField(default=False)
