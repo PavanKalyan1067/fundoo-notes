@@ -28,5 +28,7 @@ response_code = {
     413: "Login first",
     414: "Invalid operation",
     415: "Enter upcoming time",
-    416: "Something went wrong. Please Try again"
+    416: "Something went wrong. Please Try again",
+    417:"User Logged out Successfully!!",
+    418:"User already Blacklisted",
 }
