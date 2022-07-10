@@ -63,13 +63,14 @@ class CreateAPIView(generics.GenericAPIView):
 
 
 class RetrieveAPIView(APIView):
-    def get(self, request, pk):
-        try:
-            data = Notes.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
 
-            # data = Notes.objects.get(pk=pk)
+    def get(self, request):
+        user_id = request.user.id
+        try:
+            note = Notes.objects.filter(user=request.user)
+            serializer = NotesSerializer(note, many=True)
             logger.info('Getting the notes data on %s', timezone.now())
-            serializer = NotesSerializer(data, many=True)
             serialized_data = serializer.data
             response = {
                 'success': True,
