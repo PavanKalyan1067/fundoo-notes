@@ -122,19 +122,27 @@ class DeleteAPIView(APIView):
 class UpdateNotesApiView(generics.GenericAPIView):
     serializer_class = NotesSerializer
     data = Notes.objects.all()
-    permission_classes = [permissions.IsAuthenticated]
 
     def get_objects(self, pk):
         try:
             return Notes.objects.get(pk=pk)
         except Exception:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            response = {
+                'success': False,
+                'message': response_code[416],
+            }
+            return Response(response)
 
     def get(self, request, *args, **kwargs):
         pk = self.kwargs.get('pk')
         note = self.get_objects(pk=pk)
         serializer = NotesSerializer(note)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        response = {
+            'success': True,
+            'message': response_code[200],
+            'data': serializer.data
+        }
+        return Response(response)
 
     def put(self, request, *args, **kwargs):
         pk = self.kwargs.get('pk')
@@ -149,7 +157,11 @@ class UpdateNotesApiView(generics.GenericAPIView):
             response = {
                 'success': True,
                 'message': response_code[200],
+                'data': serializer.data
             }
             return Response(response)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+        response = {
+            'success': False,
+            'message': response_code[416],
+        }
+        return Response(response)
