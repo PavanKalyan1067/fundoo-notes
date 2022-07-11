@@ -7,7 +7,10 @@ from Fundoonotes.views import (
     ArchiveNotesAPIView,
     AllArchiveNotesAPIView,
     AllTrashNotesAPIView,
-TrashNotesAPIView,
+    TrashNotesAPIView,
+    AllPinNotesAPIView,
+    PinNotesAPIView,
+
 )
 
 urlpatterns = [
@@ -19,4 +22,7 @@ urlpatterns = [
     path('api/archive1/', AllArchiveNotesAPIView.as_view()),
     path('api/trash/', AllTrashNotesAPIView.as_view()),
     path('api/trash1/<pk>', TrashNotesAPIView.as_view()),
+    path('api/pin/<pk>', PinNotesAPIView.as_view()),
+    path('api/pin1/', AllPinNotesAPIView.as_view()),
+
 ]
