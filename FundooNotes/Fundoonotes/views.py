@@ -171,7 +171,7 @@ class UpdateNotesAPIView(generics.GenericAPIView):
 
 
 class AllArchiveNotesAPIView(generics.GenericAPIView):
-    serializer_class = TrashSerializer
+    serializer_class = NotesSerializer
     queryset = Notes.objects.all()
     permission_classes = [permissions.IsAuthenticated]
 
