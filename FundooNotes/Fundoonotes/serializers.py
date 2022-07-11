@@ -18,3 +18,10 @@ class TrashSerializer(serializers.ModelSerializer):
         model = Notes
         fields = ['id', 'title', 'description', 'isTrash']
         read_only_fields = ['id', 'title']
+
+
+class PinSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notes
+        fields = ['id', 'title', 'description', 'isPinned']
+        read_only_fields = ['id', 'title']
