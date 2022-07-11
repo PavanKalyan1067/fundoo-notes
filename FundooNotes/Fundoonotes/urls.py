@@ -5,7 +5,9 @@ from Fundoonotes.views import (
     DeleteAPIView,
     CreateAPIView,
     ArchiveNotesAPIView,
-    AllArchiveNotesAPIView
+    AllArchiveNotesAPIView,
+    AllTrashNotesAPIView,
+TrashNotesAPIView,
 )
 
 urlpatterns = [
@@ -15,5 +17,6 @@ urlpatterns = [
     path('api/create/', CreateAPIView.as_view()),
     path('api/archive/<pk>', ArchiveNotesAPIView.as_view()),
     path('api/archive1/', AllArchiveNotesAPIView.as_view()),
-
+    path('api/trash/', AllTrashNotesAPIView.as_view()),
+    path('api/trash1/<pk>', TrashNotesAPIView.as_view()),
 ]
