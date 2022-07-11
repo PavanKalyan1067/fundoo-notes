@@ -1,4 +1,5 @@
 from django.core.cache import cache
+from django.db.models import Q
 from django.http import Http404
 from django.http.multipartparser import MultiPartParser
 from django.utils import timezone
@@ -13,8 +14,9 @@ from .logger import get_logger
 from .models import Notes
 from Fundoonotes.exceptions import DoesNotExist, validate_time, DoesNotExistException, PassedTimeException
 from rest_framework.views import APIView
-from .serializers import NotesSerializer
+from .serializers import NotesSerializer, TrashSerializer
 from Fundoonotes.Response import response_code
+from .utils import get_notes_by_id
 
 logger = get_logger()
 
@@ -120,7 +122,7 @@ class DeleteAPIView(APIView):
             return Response(response)
 
 
-class UpdateNotesApiView(generics.GenericAPIView):
+class UpdateNotesAPIView(generics.GenericAPIView):
     serializer_class = NotesSerializer
     data = Notes.objects.all()
 
@@ -166,3 +168,49 @@ class UpdateNotesApiView(generics.GenericAPIView):
             'message': response_code[416],
         }
         return Response(response)
+
+
+class AllArchiveNotesAPIView(generics.GenericAPIView):
+    serializer_class = TrashSerializer
+    queryset = Notes.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        try:
+            user = request.user
+            archives = Notes.objects.filter(user_id=user.id, isTrash=False, isArchive=True)
+            serializer = NotesSerializer(archives, many=True)
+            response = {
+                "success": True,
+                "msg": response_code[200],
+                "data": serializer.data
+            }
+            return Response(response)
+        except Exception:
+            response = {
+                "success": False,
+                "msg": response_code[416],
+            }
+            return Response(response)
+
+
+class ArchiveNotesAPIView(generics.GenericAPIView):
+    def post(self, request, *args, **kwar):
+        pk = self.kwargs.get('pk')
+        note_id = pk
+        note = Notes.objects.get(id=note_id)
+        try:
+            if not note.isArchive:
+                note.isArchive = True
+            else:
+                note.isArchive = False
+            note.save()
+            response = {
+                'success': True,
+                'message': 'Notes isArchive successful!'
+            }
+            return Response(response)
+        except Exception as e:
+            logger.exception(e)
+            return Response({'success': False, 'message': 'Oops! Something went wrong! Please try again...'},
+                            status=status.HTTP_400_BAD_REQUEST)
