@@ -14,7 +14,7 @@ from .logger import get_logger
 from .models import Notes
 from Fundoonotes.exceptions import DoesNotExist, validate_time, DoesNotExistException, PassedTimeException
 from rest_framework.views import APIView
-from .serializers import NotesSerializer, TrashSerializer
+from .serializers import NotesSerializer, TrashSerializer, PinSerializer
 from Fundoonotes.Response import response_code
 from .utils import get_notes_by_id
 
@@ -256,6 +256,54 @@ class TrashNotesAPIView(generics.GenericAPIView):
             response = {
                 'success': True,
                 'message': 'Notes isTrash successfully!'
+            }
+            return Response(response)
+        except Exception as e:
+            response = {
+                'success': False,
+                'message': 'Oops! Something went wrong! Please try again...',
+            }
+            return Response(response)
+
+
+class AllPinNotesAPIView(generics.GenericAPIView):
+    serializer_class = TrashSerializer
+    queryset = Notes.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        try:
+            user = request.user
+            trash = Notes.objects.filter(user_id=user.id, isPinned=True)
+            serializer = PinSerializer(trash, many=True)
+            response = {
+                "success": True,
+                "msg": response_code[200],
+                "data": serializer.data
+            }
+            return Response(response)
+        except Exception:
+            response = {
+                "success": False,
+                "msg": response_code[416],
+            }
+            return Response(response)
+
+
+class PinNotesAPIView(generics.GenericAPIView):
+    def post(self, request, *args, **kwar):
+        pk = self.kwargs.get('pk')
+        note_id = pk
+        note = Notes.objects.get(id=note_id)
+        try:
+            if not note.isPinned:
+                note.isPinned = True
+            else:
+                note.isPinned = False
+            note.save()
+            response = {
+                'success': True,
+                'message': 'Notes isPinned successfully!'
             }
             return Response(response)
         except Exception as e:
