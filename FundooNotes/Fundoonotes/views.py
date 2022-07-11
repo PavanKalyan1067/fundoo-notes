@@ -207,10 +207,12 @@ class ArchiveNotesAPIView(generics.GenericAPIView):
             note.save()
             response = {
                 'success': True,
-                'message': 'Notes isArchive successful!'
+                'message': 'Notes isArchive successfully!'
             }
             return Response(response)
         except Exception as e:
-            logger.exception(e)
-            return Response({'success': False, 'message': 'Oops! Something went wrong! Please try again...'},
-                            status=status.HTTP_400_BAD_REQUEST)
+            response = {
+                'success': False,
+                'message': 'Oops! Something went wrong! Please try again...',
+            }
+            return Response(response)
