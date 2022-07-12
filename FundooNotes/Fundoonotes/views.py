@@ -291,7 +291,7 @@ class AllPinNotesAPIView(generics.GenericAPIView):
 
 
 class PinNotesAPIView(generics.GenericAPIView):
-    def post(self, request, *args, **kwar):
+    def put(self, request, *args, **kwar):
         pk = self.kwargs.get('pk')
         note_id = pk
         note = Notes.objects.get(id=note_id)
