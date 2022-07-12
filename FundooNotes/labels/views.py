@@ -56,3 +56,49 @@ class LabelAPIView(generics.GenericAPIView):
                 'message': 'Oops! Something went wrong! Please try again...'
             }
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UpdateLabelsAPIView(generics.GenericAPIView):
+    serializer_class = LabelSerializer
+    data = Labels.objects.all()
+
+    def get_objects(self, pk):
+        try:
+            return Labels.objects.get(pk=pk)
+        except Exception:
+            response = {
+                'success': False,
+                'message': response_code[416],
+            }
+            return Response(response)
+
+    def get(self, request, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        note = self.get_objects(pk=pk)
+        serializer = LabelSerializer(note)
+        response = {
+            'success': True,
+            'message': response_code[200],
+            'data': serializer.data
+        }
+        return Response(response)
+
+    def put(self, request, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        note = self.get_objects(pk=pk)
+        serializer = LabelSerializer(note, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            note = Labels.objects.get(pk=pk)
+            note.save()
+            response = {
+                'success': True,
+                'message': response_code[200],
+                'data': serializer.data
+            }
+            return Response(response)
+        response = {
+            'success': False,
+            'message': response_code[416],
+        }
+        return Response(response)
