@@ -102,3 +102,20 @@ class UpdateLabelsAPIView(generics.GenericAPIView):
             'message': response_code[416],
         }
         return Response(response)
+
+
+class DeleteAPIView(generics.GenericAPIView):
+    def delete(self, request, pk):
+        try:
+            data = Labels.objects.get(pk=pk)
+            data.delete()
+            response = {
+                'status': 'Successfully Deleted Data',
+            }
+            return Response(response, status=status.HTTP_202_ACCEPTED)
+        except Exception as e:
+            response = {
+                'success': False,
+                'message': 'Oops! Something went wrong! Please try again...'
+            }
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
