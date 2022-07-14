@@ -81,31 +81,22 @@ TEMPLATES = [
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'fundoonotes',
+        'USER': 'postgres',
+        'PASSWORD': 'fundoonotes1',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': os.environ.get("NAME"),
-#         'USER': os.environ.get("USER"),
-#         'PASSWORD': os.environ.get("PASSWORD"),
-#         'HOST': os.environ.get("HOST"),
-#     }
-# }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'fundoo',
-#         'USER': 'fundoo1',
-#         'PASSWORD': 'fundoo',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     }
-# }
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -114,7 +105,8 @@ REST_FRAMEWORK = {
     ],
 }
 SIMPLE_JWT = {
-    'USER_ID_FIELD': 'user_id'
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=100),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=4),
 }
 
 
@@ -159,8 +151,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 JWT_SECRET_KEY = 'JWT_SECRET_KEY'
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=100),
-    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=4),
-}
+
 AUTH_USER_MODEL = 'users.User'
