@@ -1,14 +1,9 @@
-from django.contrib.auth import authenticate
 from rest_framework import serializers
 from rest_framework.response import Response
-
-from Fundoonotes.exceptions import DoesNotExist
 from users.models import User
-from django.contrib import auth
-from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.utils.encoding import smart_str, force_str, force_bytes, DjangoUnicodeDecodeError
+from django.utils.encoding import smart_str, force_bytes, DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
 
@@ -63,27 +58,6 @@ class EmailVerificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['token']
-
-
-class LogoutSerializer(serializers.ModelSerializer):
-    refresh = serializers.CharField()
-
-    default_error_message = {
-        'bad_token': 'Token is expired or invalid'
-    }
-
-    # def validate(self, attrs):
-    #     self.token = attrs['refresh']
-    #     return attrs
-
-    def create(self, validated_data):
-
-        try:
-            RefreshToken(validated_data.get('refresh')).blacklist()
-            return None
-
-        except TokenError:
-            self.fail('bad_token')
 
 
 class ForgotPasswordSerializer(serializers.ModelSerializer):
@@ -183,21 +157,3 @@ class LoginSerializer(serializers.ModelSerializer):
         model = User
         fields = ['email', 'password', 'username', 'tokens']
 
-    def validate(self, request):
-        email = request.get('email', '')
-        password = request.get('password', '')
-        user_obj = authenticate(request, email=email, password=password)
-
-        if user_obj is not None:
-            # raise AuthenticationFailed('Invalid credentials, try again')
-            if User is not user_obj.is_active:
-                raise AuthenticationFailed('Account disabled, contact admin')
-            if User is not user_obj.is_verified:
-                 raise AuthenticationFailed('Email is not verified')
-        return {'email': email}
-
-        # return {
-        #     'email': user.email,
-        #     'username': user.username,
-        #     'tokens': user.tokens
-        # }
