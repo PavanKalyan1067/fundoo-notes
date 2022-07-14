@@ -101,7 +101,11 @@ class ForgotPasswordResetEmailAPIView(generics.GenericAPIView):
     def post(self, request):
         serializer = ForgotPasswordSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        return Response({'code': 309, 'msg': response_code[309]})
+        response = {
+            'status': True,
+            'msg': response_code[309]
+        }
+        return Response(response)
 
 
 class SetNewPasswordAPIView(generics.GenericAPIView):
