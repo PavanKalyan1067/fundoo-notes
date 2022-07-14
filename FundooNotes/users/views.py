@@ -76,11 +76,23 @@ class VerifyEmail(generics.GenericAPIView):
             if not user.is_verified:
                 user.is_verified = True
                 user.save()
-            return Response({'code': 302, 'msg': response_code[302]})
+                response = {
+                    'status': True,
+                    'msg': response_code[302]
+                }
+                return Response(response)
         except jwt.ExpiredSignatureError as e:
-            return Response({'code': 304, 'msg': response_code[304]})
+            response = {
+                'status': True,
+                'msg': response_code[304]
+            }
+            return Response(response)
         except jwt.exceptions.DecodeError as e:
-            return Response({'code': 307, 'msg': response_code[307]})
+            response = {
+                'status': True,
+                'msg': response_code[307]
+            }
+            return Response(response)
 
 
 class ForgotPasswordResetEmailAPIView(generics.GenericAPIView):
@@ -108,8 +120,8 @@ class LogoutAPIView(generics.GenericAPIView):
             token = RefreshToken(Refresh_token)
             token.blacklist()
             response = ({
-                    'success': True,
-                    'msg': response_code[417]
+                'success': True,
+                'msg': response_code[417]
             })
             return Response(response)
         except Exception as e:
