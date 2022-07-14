@@ -102,15 +102,16 @@ class SetNewPasswordAPIView(generics.GenericAPIView):
 
 
 class LogoutAPIView(generics.GenericAPIView):
-    def post(self, request, format=None):
+    def post(self, request):
         try:
-            refresh_token = request.data.get('refresh_token')
-            RefreshToken(refresh_token).blacklist()
+            Refresh_token = request.data["refresh"]
+            token = RefreshToken(Refresh_token)
+            token.blacklist()
             response = ({
-                'success': True,
-                'msg': response_code[417]
+                    'success': True,
+                    'msg': response_code[417]
             })
-            return Response(response, status=status.HTTP_204_NO_CONTENT)
+            return Response(response)
         except Exception as e:
             response = ({
                 'success': True,
