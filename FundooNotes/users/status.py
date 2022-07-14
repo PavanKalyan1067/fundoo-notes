@@ -5,7 +5,7 @@ response_code = {
     203: "Ok",
     300: "Validation error",
     301: "Error occurred while sending activation email",
-    302: "User account is activated",
+    302: "User account is verified",
     303: "Email user does not exists",
     304: "Token Expired",
     305: "Error occur while redirecting",
