@@ -114,7 +114,11 @@ class SetNewPasswordAPIView(generics.GenericAPIView):
     def post(self, request, uid, token):
         serializer = UserPasswordResetSerializer(data=request.data, context={'uid': uid, 'token': token})
         serializer.is_valid(raise_exception=True)
-        return Response({'code': 308, 'msg': response_code[308]})
+        response = {
+            'status': True,
+            'msg': response_code[308]
+        }
+        return Response(response)
 
 
 class LogoutAPIView(generics.GenericAPIView):
