@@ -170,7 +170,7 @@ class LoginAPIView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         response = {
             'status': True,
-            'msg': response_code[308],
+            'msg': response_code[419],
             'data': serializer.data
         }
         return Response(response)
