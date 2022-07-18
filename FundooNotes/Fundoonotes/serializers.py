@@ -18,8 +18,10 @@ class NotesSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         collaborator = validated_data.pop('collaborator')
+        label = validated_data.pop('label')
         note = Notes.objects.create(**validated_data)
         note.collaborator.set(collaborator)
+        note.label.set(label)
         note.save()
         return note
 
