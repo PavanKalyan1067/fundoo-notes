@@ -1,6 +1,10 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 
+import labels
 from Fundoonotes.models import Notes
+from labels.models import Labels
+from labels.serializers import LabelSerializer
 
 
 class NotesSerializer(serializers.ModelSerializer):
@@ -11,6 +15,13 @@ class NotesSerializer(serializers.ModelSerializer):
         model = Notes
         fields = '__all__'
         read_only_fields = ['id', 'user', 'isTrash']
+
+    def create(self, validated_data):
+        collaborator = validated_data.pop('collaborator')
+        note = Notes.objects.create(**validated_data)
+        note.collaborator.set(collaborator)
+        note.save()
+        return note
 
 
 class TrashSerializer(serializers.ModelSerializer):
