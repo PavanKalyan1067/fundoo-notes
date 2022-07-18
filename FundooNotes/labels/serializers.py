@@ -9,8 +9,6 @@ class LabelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Labels
-        fields = ['label']
+        fields = '__all__'
         read_only_fields = ['id', 'label_id']
-        REQUIRED_FIELDS = ['label']
-
 
