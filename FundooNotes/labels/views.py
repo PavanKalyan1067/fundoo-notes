@@ -45,9 +45,9 @@ class LabelAPIView(generics.GenericAPIView):
             serializer = LabelSerializer(data, many=True)
             serialized_data = serializer.data
             response = {
-                'status': 'Successfully Retrieved all Data',
-                'user': serialized_data,
+                'status': True,
                 'message': 'Getting Labels successfully!',
+                'data': serialized_data,
             }
             return Response(response, status=status.HTTP_200_OK)
         except Exception as e:
