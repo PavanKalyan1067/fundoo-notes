@@ -1,4 +1,5 @@
-from rest_framework import generics, status
+from django.core.mail import send_mail
+from rest_framework import generics
 from users.exceptions import (
     PasswordDidntMatched,
     PasswordPatternMatchError
@@ -33,15 +34,6 @@ class RegisterView(generics.GenericAPIView):
 
     def post(self, request):
         user = request.data
-        password = request.data.get('password')
-        confirm_password = request.data.get('confirm_password')
-        try:
-            validate_password_match(password, confirm_password)
-            validate_password_pattern_match(password)
-        except PasswordDidntMatched as e:
-            return Response({"code": e.code, "msg": e.msg})
-        except PasswordPatternMatchError as e:
-            return Response({"code": e.code, "msg": e.msg})
         serializer = self.serializer_class(data=user)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -146,6 +138,7 @@ class UserProfileView(generics.GenericAPIView):
     queryset = User.objects.all()
 
     def get(self, request):
+        Util.send_email({'email_subject': 'abc', 'email_body': 'hey', 'to_email': 'pavan.kal98@gmail.com'})
         try:
             user = User.objects.all()
             allUser = RegisterSerializer(user, many=True)
