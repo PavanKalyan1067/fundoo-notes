@@ -490,3 +490,1032 @@ Traceback (most recent call last):
   File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/loginauth/views.py", line 542, in get
     token = kwargs['token']
 KeyError: 'token'
+07/18/2022 09:24:29 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 43, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 21, in create
+    note = Notes.objects.create(**validated_data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/base.py", line 554, in __init__
+    _setattr(self, prop, kwargs[prop])
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 595, in __set__
+    raise TypeError(
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use label.set() instead.
+07/18/2022 09:24:29 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 43, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 21, in create
+    note = Notes.objects.create(**validated_data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/base.py", line 554, in __init__
+    _setattr(self, prop, kwargs[prop])
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 595, in __set__
+    raise TypeError(
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use label.set() instead.
+07/18/2022 11:46:01 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 43, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 22, in create
+    note = Notes.objects.create(**validated_data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/base.py", line 554, in __init__
+    _setattr(self, prop, kwargs[prop])
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 595, in __set__
+    raise TypeError(
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use label.set() instead.
+07/18/2022 11:46:01 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 43, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 22, in create
+    note = Notes.objects.create(**validated_data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/base.py", line 554, in __init__
+    _setattr(self, prop, kwargs[prop])
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 595, in __set__
+    raise TypeError(
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use label.set() instead.
+07/18/2022 11:46:35 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 43, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 22, in create
+    note = Notes.objects.create(**validated_data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/base.py", line 554, in __init__
+    _setattr(self, prop, kwargs[prop])
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 595, in __set__
+    raise TypeError(
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use label.set() instead.
+07/18/2022 11:46:35 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 43, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 22, in create
+    note = Notes.objects.create(**validated_data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/base.py", line 554, in __init__
+    _setattr(self, prop, kwargs[prop])
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 595, in __set__
+    raise TypeError(
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use label.set() instead.
+07/18/2022 02:19:12 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/request.py", line 416, in __getattr__
+    return getattr(self._request, attr)
+AttributeError: 'WSGIRequest' object has no attribute 'user_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 77, in get
+    collab = Notes.objects.filter(collaborator__in=[request.user_id], isTrash=False, isArchive=False)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/request.py", line 418, in __getattr__
+    return self.__getattribute__(attr)
+AttributeError: 'Request' object has no attribute 'user_id'
+07/18/2022 02:19:12 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/request.py", line 416, in __getattr__
+    return getattr(self._request, attr)
+AttributeError: 'WSGIRequest' object has no attribute 'user_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 77, in get
+    collab = Notes.objects.filter(collaborator__in=[request.user_id], isTrash=False, isArchive=False)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/request.py", line 418, in __getattr__
+    return self.__getattribute__(attr)
+AttributeError: 'Request' object has no attribute 'user_id'
+07/18/2022 02:29:30 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(name=name, user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 482, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1377, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1187, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'name' into field. Choices are: id, label, notes, user, user_id
+07/18/2022 02:29:30 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(name=name, user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 482, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1377, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1187, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'name' into field. Choices are: id, label, notes, user, user_id
+07/18/2022 02:30:44 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=labels, user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 02:30:44 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=labels, user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 02:31:40 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 02:31:40 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 02:33:15 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user_id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 02:33:15 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user_id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 02:33:54 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 02:33:54 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 02:35:19 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 02:35:19 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 02:36:57 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 02:36:57 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 04:38:03 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 04:38:03 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 04:40:07 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 04:40:07 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 04:40:10 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 04:40:10 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 04:40:51 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user.id).first()
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 04:40:51 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    user = Labels.objects.get(label=label, user_id=user.id).first()
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/18/2022 04:42:07 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 45, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 22, in create
+    note = Notes.objects.create(**validated_data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/base.py", line 554, in __init__
+    _setattr(self, prop, kwargs[prop])
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 595, in __set__
+    raise TypeError(
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use label.set() instead.
+07/18/2022 04:42:07 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 45, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 22, in create
+    note = Notes.objects.create(**validated_data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/base.py", line 554, in __init__
+    _setattr(self, prop, kwargs[prop])
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 595, in __set__
+    raise TypeError(
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use label.set() instead.
+07/18/2022 04:45:32 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 45, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 20, in create
+    user = validated_data['user']
+KeyError: 'user'
+07/18/2022 04:45:32 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 45, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 20, in create
+    user = validated_data['user']
+KeyError: 'user'
+07/18/2022 04:56:10 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 45, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 28, in create
+    note = Notes.objects.create(**validated_data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/base.py", line 554, in __init__
+    _setattr(self, prop, kwargs[prop])
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 595, in __set__
+    raise TypeError(
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use label.set() instead.
+07/18/2022 04:56:10 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 45, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 28, in create
+    note = Notes.objects.create(**validated_data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/base.py", line 554, in __init__
+    _setattr(self, prop, kwargs[prop])
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 595, in __set__
+    raise TypeError(
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use label.set() instead.
+07/18/2022 04:57:28 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 45, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 29, in create
+    note.collaborators.set(collaborator)
+AttributeError: 'Notes' object has no attribute 'collaborators'
+07/18/2022 04:57:28 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 45, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 29, in create
+    note.collaborators.set(collaborator)
+AttributeError: 'Notes' object has no attribute 'collaborators'
+07/19/2022 01:21:33 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 73, in get
+    label = Labels.objects.filter(label__in=[request.user.id], isTrash=False, isArchive=False)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1377, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1187, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'isArchive' into field. Choices are: id, label, notes, user, user_id
+07/19/2022 01:22:18 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 73, in get
+    label = Labels.objects.filter(label__in=[request.user.id], isTrash=False, isArchive=False)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1377, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1187, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'isArchive' into field. Choices are: id, label, notes, user, user_id
+07/19/2022 01:32:23 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 78, in get
+    serialized_data = serializer.data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/utils/functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'label' was declared on serializer SingleNoteSerializer, but has not been included in the 'fields' option.
+07/19/2022 01:32:54 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 78, in get
+    serialized_data = serializer.data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/utils/functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `pin` is not valid for model `Notes`.
+07/19/2022 01:33:12 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 78, in get
+    serialized_data = serializer.data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1674, in to_representation
+    return [self.child.to_representation(item) if item is not None else None for item in data]
+TypeError: 'ManyRelatedManager' object is not iterable
+07/19/2022 01:33:54 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 78, in get
+    serialized_data = serializer.data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1674, in to_representation
+    return [self.child.to_representation(item) if item is not None else None for item in data]
+TypeError: 'ManyRelatedManager' object is not iterable
+07/19/2022 01:36:20 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 75, in get
+    notes = list(chain(note, label))
+TypeError: 'DeferredAttribute' object is not iterable
+07/19/2022 01:36:37 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 78, in get
+    serialized_data = serializer.data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1674, in to_representation
+    return [self.child.to_representation(item) if item is not None else None for item in data]
+TypeError: 'ManyRelatedManager' object is not iterable
+07/19/2022 01:40:20 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 78, in get
+    serialized_data = serializer.data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1674, in to_representation
+    return [self.child.to_representation(item) if item is not None else None for item in data]
+TypeError: 'ManyRelatedManager' object is not iterable
+07/19/2022 01:41:07 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 78, in get
+    serialized_data = serializer.data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1674, in to_representation
+    return [self.child.to_representation(item) if item is not None else None for item in data]
+TypeError: 'ManyRelatedManager' object is not iterable
+07/19/2022 01:44:27 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 74, in get
+    label = Labels.objects.get(label=label)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/19/2022 01:45:02 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 74, in get
+    label = Labels.objects.get(label__in=[request.user.id], label=label)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+07/19/2022 01:46:27 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 74, in get
+    serialized_data = serializer.data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1674, in to_representation
+    return [self.child.to_representation(item) if item is not None else None for item in data]
+TypeError: 'ManyRelatedManager' object is not iterable
+07/19/2022 01:49:29 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 36, in create
+    note.label.set(label)
+AttributeError: 'NoneType' object has no attribute 'set'
+07/19/2022 01:50:23 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 32, in create
+    labels.set()
+AttributeError: 'list' object has no attribute 'set'
+07/19/2022 01:52:00 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 20, in create
+    user = validated_data['user']
+KeyError: 'user'
+07/19/2022 01:52:15 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 32, in create
+    Labels.objects.get_or_create(label_id=user, label=label)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 657, in get_or_create
+    return self.get(**kwargs), False
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 482, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1377, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1187, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'label_id' into field. Choices are: id, label, user, user_id
+07/19/2022 01:52:38 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 657, in get_or_create
+    return self.get(**kwargs), False
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 32, in create
+    Labels.objects.get_or_create(user=user, label=label)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 664, in get_or_create
+    return self.create(**params), True
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/base.py", line 541, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 235, in __set__
+    raise ValueError(
+ValueError: Cannot assign "5": "Labels.user" must be a "User" instance.
+07/19/2022 01:53:51 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 657, in get_or_create
+    return self.get(**kwargs), False
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 32, in create
+    Labels.objects.get_or_create(user=User, label=label)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 664, in get_or_create
+    return self.create(**params), True
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/base.py", line 541, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 235, in __set__
+    raise ValueError(
+ValueError: Cannot assign "5": "Labels.user" must be a "User" instance.
+07/19/2022 01:55:37 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 21, in create
+    User = validated_data['user.id']
+KeyError: 'user.id'
+07/19/2022 01:56:02 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 32, in create
+    Labels.objects.get_or_create(user=User, label=label)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 657, in get_or_create
+    return self.get(**kwargs), False
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 482, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1415, in build_filter
+    self.check_related_objects(join_info.final_field, value, join_info.opts)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1226, in check_related_objects
+    self.check_query_object_type(value, opts, field)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1203, in check_query_object_type
+    raise ValueError(
+ValueError: Cannot query "<class 'django.contrib.auth.models.User'>": Must be "User" instance.
+07/19/2022 01:56:18 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 657, in get_or_create
+    return self.get(**kwargs), False
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+labels.models.Labels.DoesNotExist: Labels matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 32, in create
+    Labels.objects.get_or_create(user=user, label=label)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 664, in get_or_create
+    return self.create(**params), True
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/base.py", line 541, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 235, in __set__
+    raise ValueError(
+ValueError: Cannot assign "5": "Labels.user" must be a "User" instance.
+07/19/2022 01:57:04 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py", line 1988, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'ForwardManyToOneDescriptor'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 32, in create
+    Labels.objects.get_or_create(user=Labels.user, label=label)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 657, in get_or_create
+    return self.get(**kwargs), False
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 482, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1448, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1273, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_lookups.py", line 154, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py", line 1990, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <django.db.models.fields.related_descriptors.ForwardManyToOneDescriptor object at 0x7f1bd4215250>.
+07/19/2022 01:58:24 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py", line 1988, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'ForwardManyToOneDescriptor'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 32, in create
+    Labels.objects.get_or_create(user=Labels.user, label=label)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 657, in get_or_create
+    return self.get(**kwargs), False
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 482, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1448, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1273, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_lookups.py", line 154, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py", line 1990, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <django.db.models.fields.related_descriptors.ForwardManyToOneDescriptor object at 0x7f1bd4215250>.
+07/19/2022 02:02:39 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py", line 1988, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'ForwardManyToOneDescriptor'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 32, in create
+    Labels.objects.get_or_create(user=Labels.user, label=label)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 657, in get_or_create
+    return self.get(**kwargs), False
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 482, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1448, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1273, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_lookups.py", line 154, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py", line 1990, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <django.db.models.fields.related_descriptors.ForwardManyToOneDescriptor object at 0x7f1bd4215250>.
+07/19/2022 02:03:21 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 28, in create
+    note = Notes.objects.create(**validated_data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 512, in create
+    obj = self.model(**kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/base.py", line 554, in __init__
+    _setattr(self, prop, kwargs[prop])
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 595, in __set__
+    raise TypeError(
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use label.set() instead.
+07/19/2022 02:05:06 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 74, in get
+    serialized_data = serializer.data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1674, in to_representation
+    return [self.child.to_representation(item) if item is not None else None for item in data]
+TypeError: 'ManyRelatedManager' object is not iterable
