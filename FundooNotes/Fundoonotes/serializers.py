@@ -1,10 +1,7 @@
-from django.contrib.auth.models import User
 from rest_framework import serializers
 
-import labels
 from Fundoonotes.models import Notes
 from labels.models import Labels
-from labels.serializers import LabelSerializer
 
 
 class NotesSerializer(serializers.ModelSerializer):
@@ -17,6 +14,7 @@ class NotesSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'user', 'isTrash']
 
     def create(self, validated_data):
+        user = validated_data['user_id']
         collaborator = validated_data.pop('collaborator')
         label = validated_data.pop('label')
         note = Notes.objects.create(**validated_data)
@@ -24,6 +22,23 @@ class NotesSerializer(serializers.ModelSerializer):
         note.label.set(label)
         note.save()
         return note
+
+
+class LabelSerializer1(serializers.ModelSerializer):
+    class Meta:
+        model = Labels
+        fields = ['label', 'id']
+
+
+class GetNoteSerializer(serializers.ModelSerializer):
+    label = LabelSerializer1(many=True)
+    reminder = serializers.TimeField(format="%H:%M", required=False)
+
+    class Meta:
+        model = Notes
+        fields = ['user', 'title', 'description', 'reminder', 'isArchive', 'isTrash', 'isPinned',
+                  'collaborator', 'label']
+        read_only_fields = ['id', 'user']
 
 
 class TrashSerializer(serializers.ModelSerializer):
