@@ -1,24 +1,27 @@
-from django.core.cache import cache
-from django.db.models import Q
-from django.http import Http404
-from django.http.multipartparser import MultiPartParser
+import datetime
+import json
+import pickle
+from django.conf import settings
+from django.http import HttpResponse
 from django.utils import timezone
-from rest_framework import serializers, status, generics, permissions, request
+from rest_framework import generics, permissions, status
 from rest_framework.exceptions import ValidationError
-from rest_framework.parsers import FormParser, JSONParser
 from rest_framework.response import Response
 from rest_framework_jwt.settings import api_settings
-
+from django.core.cache import cache
 from users.models import User
 from .logger import get_logger
 from .models import Notes
-from Fundoonotes.exceptions import DoesNotExist, validate_time, DoesNotExistException, PassedTimeException
+from Fundoonotes.exceptions import DoesNotExist
 from rest_framework.views import APIView
-from .serializers import NotesSerializer, TrashSerializer, PinSerializer
+
+# from .redis_django import update_redis
+from .serializers import NotesSerializer, TrashSerializer, PinSerializer, GetNoteSerializer
 from Fundoonotes.Response import response_code
-from .utils import get_notes_by_id
+from .utils import NoteRedis
 
 logger = get_logger()
+Redis = settings.CACHES
 
 
 def get_user(token):
@@ -36,31 +39,45 @@ class CreateAPIView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
+        data = request.data
+        user_id = request.user.id
         user = request.user
         try:
+            if 'reminder' in data:
+                reminder = data['reminder']
+                rem = datetime.datetime.strptime(reminder, "%Y-%m-%d %H:%M:%S")
+                if rem:
+                    data['reminder'] = reminder
+                else:
+                    response = {'message': "Does Not match format '%Y-%m-%d %H:%M:%S"}
+                    return Response(response)
             serializer = NotesSerializer(data=request.data, partial=True)
-            serializer.is_valid()
-            serializer.save(user_id=user.id)
-            data = serializer.data
-            response = {
-                'success': True,
-                'message': response_code[201],
-                'data': data
-            }
-            return Response(response)
+            if serializer.is_valid():
+                serializer.save(user_id=user.id)
+                NoteRedis.save(key=user_id, value=serializer.data)
+                data = serializer.data
+                response = {
+                    'success': True,
+                    'message': response_code[201],
+                    'data': data
+                }
+                return Response(response)
+            return Response(data)
 
         except ValidationError as e:
             response = {
                 'success': False,
                 'message': response_code[308],
+                'data': str(e)
             }
-            logger.exception(e)
+            logger.exception(str(e))
             return Response(response)
         except Exception as e:
             response = {
                 'success': False,
-                'message': response_code[416], }
-            logger.exception(e)
+                'message': response_code[416],
+                'data': str(e)}
+            logger.exception(str(e))
             return Response(response)
 
 
@@ -68,22 +85,29 @@ class RetrieveAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
-        user_id = request.user.id
         try:
-            note = Notes.objects.filter(user=request.user)
-            serializer = NotesSerializer(note, many=True)
-            logger.info('Getting the notes data on %s', timezone.now())
-            serialized_data = serializer.data
-            response = {
-                'success': True,
-                'message': response_code[200],
-                'data': serialized_data,
-            }
-            return Response(response)
+            user = request.user
+            if user:
+                data = NoteRedis.extract(key=user.id)
+
+                # notes = Notes.objects.filter(user=request.user, isTrash=False, isArchive=False)
+                # serializer = GetNoteSerializer(notes, many=True)
+                # logger.info('Getting the notes data on %s', timezone.now())
+                # serialized_data = serializer.data
+                # for note in serialized_data:
+                #     NoteRedis.save(key=user.id,value=note)
+                response = {
+                    'success': True,
+                    'message': response_code[200],
+                    'data': data.values(),
+                }
+                logger.info('successfully get Notes from database')
+                return Response(response)
         except DoesNotExist as e:
             response = {
                 'success': False,
-                'message': response_code[307]
+                'message': response_code[307],
+                'data': str(e)
             }
             logger.exception(e)
             return Response(response)
@@ -91,6 +115,7 @@ class RetrieveAPIView(APIView):
             response = {
                 'success': False,
                 'message': response_code[416],
+                'data': str(e)
             }
             logger.exception(e)
             return Response(response)
@@ -123,12 +148,13 @@ class DeleteAPIView(APIView):
 
 
 class UpdateNotesAPIView(generics.GenericAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = NotesSerializer
     data = Notes.objects.all()
 
-    def get_objects(self, pk):
+    def get_objects(self, pk, user_id):
         try:
-            return Notes.objects.get(pk=pk)
+            return Notes.objects.get(pk=pk, user_id=user_id)
         except Exception:
             response = {
                 'success': False,
@@ -138,7 +164,8 @@ class UpdateNotesAPIView(generics.GenericAPIView):
 
     def get(self, request, *args, **kwargs):
         pk = self.kwargs.get('pk')
-        note = self.get_objects(pk=pk)
+        user_id = self.kwargs.get('user_id')
+        note = self.get_objects(pk=pk, user_id=user_id)
         serializer = NotesSerializer(note)
         response = {
             'success': True,
@@ -149,7 +176,8 @@ class UpdateNotesAPIView(generics.GenericAPIView):
 
     def put(self, request, *args, **kwargs):
         pk = self.kwargs.get('pk')
-        note = self.get_objects(pk=pk)
+        user_id = self.kwargs.get('user_id')
+        note = self.get_objects(pk=pk, user_id=user_id)
         serializer = NotesSerializer(note, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -167,6 +195,7 @@ class UpdateNotesAPIView(generics.GenericAPIView):
             'success': False,
             'message': response_code[416],
         }
+        logger.exception(response_code[416])
         return Response(response)
 
 
@@ -191,10 +220,13 @@ class AllArchiveNotesAPIView(generics.GenericAPIView):
                 "success": False,
                 "msg": response_code[416],
             }
+            logger.exception(response_code[416])
             return Response(response)
 
 
 class ArchiveNotesAPIView(generics.GenericAPIView):
+    serializer_class = NotesSerializer
+
     def post(self, request, *args, **kwar):
         pk = self.kwargs.get('pk')
         note_id = pk
@@ -212,9 +244,10 @@ class ArchiveNotesAPIView(generics.GenericAPIView):
             return Response(response)
         except Exception as e:
             response = {
-                'success': False,
-                'message': 'Oops! Something went wrong! Please try again...',
+                "success": False,
+                "msg": response_code[416],
             }
+            logger.exception(response_code[416])
             return Response(response)
 
 
@@ -239,10 +272,13 @@ class AllTrashNotesAPIView(generics.GenericAPIView):
                 "success": False,
                 "msg": response_code[416],
             }
+            logger.exception(response_code[416])
             return Response(response)
 
 
 class TrashNotesAPIView(generics.GenericAPIView):
+    serializer_class = NotesSerializer
+
     def post(self, request, *args, **kwar):
         pk = self.kwargs.get('pk')
         note_id = pk
@@ -260,9 +296,10 @@ class TrashNotesAPIView(generics.GenericAPIView):
             return Response(response)
         except Exception as e:
             response = {
-                'success': False,
-                'message': 'Oops! Something went wrong! Please try again...',
+                "success": False,
+                "msg": response_code[416],
             }
+            logger.exception(response_code[416])
             return Response(response)
 
 
@@ -287,10 +324,13 @@ class AllPinNotesAPIView(generics.GenericAPIView):
                 "success": False,
                 "msg": response_code[416],
             }
+            logger.exception(response_code[416])
             return Response(response)
 
 
 class PinNotesAPIView(generics.GenericAPIView):
+    serializer_class = NotesSerializer
+
     def put(self, request, *args, **kwar):
         pk = self.kwargs.get('pk')
         note_id = pk
@@ -311,6 +351,95 @@ class PinNotesAPIView(generics.GenericAPIView):
                 'success': False,
                 'message': 'Oops! Something went wrong! Please try again...',
             }
+            logger.exception(response_code[416])
             return Response(response)
 
 
+class DisplayNoteByLabelView(generics.GenericAPIView):
+    serializer_class = NotesSerializer
+    queryset = Notes.objects.all()
+
+    def get(self, request, label):
+        notes = Notes.objects.filter(user_id=request.user.id, isTrash=False, label__contains=[str(label)])
+        if notes.count() == 0:
+            return Response({'code': 409, 'msg': response_code[409]})
+        serializer = NotesSerializer(notes, many=True)
+        return Response(serializer.data, status=200)
+
+
+class CollaboratedNoteView(generics.GenericAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = NotesSerializer
+    queryset = Notes.objects.all()
+
+    def get(self, request):
+        notes = Notes.objects.filter(collaborator__in=[request.user.id], isTrash=False, isArchive=False)
+        if notes.count() == 0:
+            response = {
+                'success': False,
+                'msg': response_code[409]
+            }
+            return Response(response)
+        serializer = NotesSerializer(notes, many=True)
+        response = {
+            'success': True,
+            'msg': response_code[200],
+            'data': serializer.data
+        }
+        return Response(response)
+
+
+class CollaboratedNoteView1(generics.GenericAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = NotesSerializer
+    queryset = Notes.objects.all()
+
+    def get(self, request):
+        notes = Notes.objects.filter(label__in=[request.user.id], isTrash=False, isArchive=False)
+        if notes.count() == 0:
+            return Response({'code': 409, 'msg': response_code[409]})
+        serializer = NotesSerializer(notes, many=True)
+        return Response({"data": serializer.data, "code": 200, "msg": response_code[200]})
+
+
+from Fundoo.redis_django import RedisService
+
+# class GetNote(generics.GenericAPIView):
+#     permission_classes = [permissions.IsAuthenticated]
+#     serializer_class = NotesSerializer
+#
+#     def get(self, request, *args, **kwargs):
+#         user = request.user
+#         user_id = request.user.id
+#
+#         try:
+#             if user:
+#                 user = request.user
+#                 notes = Notes.objects.filter(user=user)
+#                 serializer = NotesSerializer(notes, many=True)
+#                 # RedisService.set(redis_key, serializer.data)
+#                 # print(RedisService.set(redis_key))
+#                 logger.info("Successfully Read Notes from REDIS")
+#                 response = {'status': True, 'message': "Successfully Read Notes from REDIS",
+#                             'data': serializer.data}
+#                 logger.info(response, 'Successfully Get notes from Redis')
+#                 return Response(response, status=status.HTTP_200_OK)
+#                 # return Response(status=status.HTTP_400_BAD_REQUEST)
+#         except Exception as e:
+#                 logger.exception(str(e))
+#                 return Response(data=str(e))
+#         #     else:
+#         #         all_note = Notes.objects.filter(user_id=request.user.id, isTrash=False, isArchive=False)
+#         #         serializer = NotesSerializer(all_note, many=True)
+#         #         # update_redis(user)
+#         #         logger.info('Getting the notes data on %s', timezone.now())
+#         #         serialized_data = serializer.data
+#         #         response = {
+#         #             'success': True,
+#         #             'message': response_code[200], 'successfully get Notes from database'
+#         #                                            'data': [serialized_data],
+#         #         }
+#         #         logger.info('successfully get labels from database')
+#         #         return Response(response)
+#         # except Exception as e:
+#         #     return Response(data=str(e), status=status.HTTP_404_NOT_FOUND)
