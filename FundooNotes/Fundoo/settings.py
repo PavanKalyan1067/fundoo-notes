@@ -9,8 +9,8 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-import datetime
 import os
+import datetime
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'labels',
     'users',
     'rest_framework_simplejwt.token_blacklist',
-    # 'drf_api_logger',
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +53,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'drf_api_logger.middleware.api_logger_middleware.APILoggerMiddleware',
 ]
 
 DRF_API_LOGGER_DATABASE = True
@@ -72,6 +71,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {
+                'staticfiles': 'django.templatetags.static',
+            }
         },
     },
 ]
@@ -97,18 +99,30 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'database',
+#         'USER': 'postgres',
+#         'PASSWORD': 'fundoonotes1',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'users.backends.JWTAuthentication',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=100),
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=4),
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -153,3 +167,57 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 JWT_SECRET_KEY = 'JWT_SECRET_KEY'
 
 AUTH_USER_MODEL = 'users.User'
+
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379/1",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient"
+#         },
+#         "KEY_PREFIX": "example"
+#     }
+# }
+
+CACHE_TTL = 60 * 15
+
+# SWAGGER_SETTINGS = {
+#     # 'USE_SESSION_AUTH': False,
+#     'SECURITY_DEFINITIONS': {
+#         'Basic': {
+#             'type': 'basic'
+#         },
+#         'Bearer': {
+#             'type': 'apiKey',
+#             'name': 'Authorization',
+#             'in': 'header'
+#         }
+#     }
+# }
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'pavan.kal98@gmail.com'
+EMAIL_HOST_PASSWORD = 'wxqlwbogdlqrpcyw'
+# EMAIL_USE_TSL = True
+
+print(os.environ.get("EMAIL_HOST"))
+print(os.environ.get("EMAIL_PORT"))
+print(os.environ.get("EMAIL_HOST_USER"))
+print(os.environ.get("EMAIL_USE_TSL"))
+
+REDIS_SETTINGS = {'db': 0, 'host': "localhost", 'port': 6379}
+
+# CELERY SETTINGS
+CELERY_BACKEND = 'redis://localhost:6379/3'
+CELERY_BROKER_URL = 'redis://localhost:6379/4'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/5'
+
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_ENABLE_UTC = True
