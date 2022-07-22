@@ -5,6 +5,15 @@ from Fundoonotes.Response import response_code
 from labels.models import Labels
 from labels.serializers import LabelSerializer
 
+'''
+class LabelAPIView(generics.GenericAPIView):class has 2 methods
+    1. def get(self, request):  
+        get method will fetch all the label for logged in user. And display it.
+    2. def post(self, request):
+        post method will be responsible for create label and save it into database. Serializer will be responsible for
+        validation and serialize the data.
+'''
+
 
 class LabelAPIView(generics.GenericAPIView):
     serializer_class = LabelSerializer
@@ -60,6 +69,17 @@ class LabelAPIView(generics.GenericAPIView):
             return Response(response)
 
 
+'''
+class UpdateLabelsAPIView(generics.GenericAPIView):
+    def get_objects(self, pk):
+        get_objects method will fetch single label object by unique id. If object is not there it will raise DoesNotExistException
+    def get(self, request, *args, **kwargs):
+        get method will display single label object according to serializer field.
+    def put(self, request, *args, **kwargs):
+        put method is responsible for update any single label object witch is fetched by get method.
+'''
+
+
 class UpdateLabelsAPIView(generics.GenericAPIView):
     serializer_class = LabelSerializer
     data = Labels.objects.all()
@@ -104,6 +124,12 @@ class UpdateLabelsAPIView(generics.GenericAPIView):
             'message': response_code[416],
         }
         return Response(response)
+
+
+'''class DeleteAPIView(generics.GenericAPIView):
+    def delete(self, request, pk):
+        delete method is responsible to delete any single label object witch is fetched by get method.
+'''
 
 
 class DeleteAPIView(generics.GenericAPIView):
