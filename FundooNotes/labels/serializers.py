@@ -11,4 +11,3 @@ class LabelSerializer(serializers.ModelSerializer):
         model = Labels
         fields = '__all__'
         read_only_fields = ['id', 'label_id']
-

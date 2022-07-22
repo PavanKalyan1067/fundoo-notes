@@ -12,4 +12,3 @@ class Labels(models.Model):
         return self.label
 
     REQUIRED_FIELDS = ['label']
-

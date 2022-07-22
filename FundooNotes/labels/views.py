@@ -1,4 +1,4 @@
-from rest_framework import serializers, status, generics, permissions
+from rest_framework import status, generics, permissions
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from Fundoonotes.Response import response_code
@@ -24,17 +24,18 @@ class LabelAPIView(generics.GenericAPIView):
                 'data': data
             }
             return Response(response)
-
         except ValidationError as e:
             response = {
                 'success': False,
                 'message': response_code[308],
+                'data': str(e)
             }
             return Response(response)
         except Exception as e:
             response = {
                 'success': False,
                 'message': response_code[416],
+                'data': str(e)
             }
             return Response(response)
 
@@ -53,9 +54,10 @@ class LabelAPIView(generics.GenericAPIView):
         except Exception as e:
             response = {
                 'success': False,
-                'message': 'Oops! Something went wrong! Please try again...'
+                'message': 'Oops! Something went wrong! Please try again...',
+                'data': str(e)
             }
-            return Response(response, status=status.HTTP_400_BAD_REQUEST)
+            return Response(response)
 
 
 class UpdateLabelsAPIView(generics.GenericAPIView):
@@ -110,12 +112,14 @@ class DeleteAPIView(generics.GenericAPIView):
             data = Labels.objects.get(pk=pk)
             data.delete()
             response = {
-                'status': 'Successfully Deleted Data',
+                'status': True,
+                'message': 'Successfully Deleted Data',
             }
             return Response(response, status=status.HTTP_202_ACCEPTED)
         except Exception as e:
             response = {
                 'success': False,
-                'message': 'Oops! Something went wrong! Please try again...'
+                'message': 'Oops! Something went wrong! Please try again...',
+                'data': str(e)
             }
-        return Response(response, status=status.HTTP_400_BAD_REQUEST)
+        return Response(response)
