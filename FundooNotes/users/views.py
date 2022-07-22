@@ -1,5 +1,19 @@
+import jwt
+
 from rest_framework import generics
 from rest_framework_jwt.settings import api_settings
+from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
+
+from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
+from django.urls import reverse
+
+from Fundoonotes.logger import get_logger
+from users.status import response_code
+from users.utils import Util
+from users.models import User
+from users.renderers import UserRenderer
 from users.serializers import (
     RegisterSerializer,
     EmailVerificationSerializer,
@@ -7,16 +21,8 @@ from users.serializers import (
     ForgotPasswordSerializer,
     LoginSerializer,
 )
-from rest_framework.response import Response
-from rest_framework_simplejwt.tokens import RefreshToken
-from users.models import User
-import jwt
-from users.renderers import UserRenderer
-from django.contrib.sites.shortcuts import get_current_site
-from django.urls import reverse
-from users.status import response_code
-from users.utils import Util
-from django.conf import settings
+
+logger = get_logger()
 
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -32,27 +38,36 @@ class RegisterView(generics.GenericAPIView):
     renderer_classes = (UserRenderer,)
 
     def post(self, request):
-        user = request.data
-        serializer = self.serializer_class(data=user)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        user_data = serializer.data
-        user = User.objects.get(email=user_data['email'])
-        token = RefreshToken.for_user(user).access_token
-        current_site = get_current_site(request).domain
-        relativeLink = reverse('email-verify')
-        absurl = 'http://' + current_site + relativeLink + "?token=" + str(token)
-        email_body = 'Hi ' + user.username + \
-                     ' Use the link below to verify your email \n' + absurl
-        data = {'email_body': email_body, 'to_email': user.email, 'from_email': settings.EMAIL_HOST_USER,
-                'email_subject': 'Verify your email'}
-        Util.send_email(data)
-        response = {
-            'success': True,
-            'msg': response_code[200],
-            'data': user_data
-        }
-        return Response(response)
+        try:
+            user = request.data
+            serializer = self.serializer_class(data=user)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            user_data = serializer.data
+            user = User.objects.get(email=user_data['email'])
+            token = RefreshToken.for_user(user).access_token
+            current_site = get_current_site(request).domain
+            relativeLink = reverse('email-verify')
+            absurl = 'http://' + current_site + relativeLink + "?token=" + str(token)
+            email_body = 'Hi ' + user.username + \
+                         ' Use the link below to verify your email \n' + absurl
+            data = {'email_body': email_body, 'to_email': user.email, 'from_email': settings.EMAIL_HOST_USER,
+                    'email_subject': 'Verify your email'}
+            Util.send_email(data)
+            response = {
+                'success': True,
+                'msg': response_code[200],
+                'data': user_data
+            }
+            return Response(response)
+        except Exception as e:
+            response = {
+                'success': False,
+                'message': 'Oops! Something went wrong! Please try again...',
+                'data': str(e)
+            }
+            logger.exception(str(e))
+            return Response(response)
 
 
 '''
@@ -80,14 +95,18 @@ class VerifyEmail(generics.GenericAPIView):
         except jwt.ExpiredSignatureError as e:
             response = {
                 'status': True,
-                'msg': response_code[304]
+                'msg': response_code[304],
+                'data': str(e)
             }
+            logger.exception(str(e))
             return Response(response)
         except jwt.exceptions.DecodeError as e:
             response = {
                 'status': True,
-                'msg': response_code[307]
+                'msg': response_code[307],
+                'data': str(e)
             }
+            logger.exception(str(e))
             return Response(response)
 
 
@@ -101,13 +120,22 @@ class ForgotPasswordResetEmailAPIView(generics.GenericAPIView):
     serializer_class = ForgotPasswordSerializer
 
     def post(self, request):
-        serializer = ForgotPasswordSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        response = {
-            'status': True,
-            'msg': response_code[309]
-        }
-        return Response(response)
+        try:
+            serializer = ForgotPasswordSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            response = {
+                'status': True,
+                'msg': response_code[309]
+            }
+            return Response(response)
+        except Exception as e:
+            response = {
+                'success': False,
+                'message': 'Oops! Something went wrong! Please try again...',
+                'data': str(e)
+            }
+            logger.exception(str(e))
+            return Response(response)
 
 
 '''
@@ -120,13 +148,22 @@ class SetNewPasswordAPIView(generics.GenericAPIView):
     serializer_class = UserPasswordResetSerializer
 
     def post(self, request, uid, token):
-        serializer = UserPasswordResetSerializer(data=request.data, context={'uid': uid, 'token': token})
-        serializer.is_valid(raise_exception=True)
-        response = {
-            'status': True,
-            'msg': response_code[308]
-        }
-        return Response(response)
+        try:
+            serializer = UserPasswordResetSerializer(data=request.data, context={'uid': uid, 'token': token})
+            serializer.is_valid(raise_exception=True)
+            response = {
+                'status': True,
+                'msg': response_code[308]
+            }
+            return Response(response)
+        except Exception as e:
+            response = {
+                'success': False,
+                'message': 'Oops! Something went wrong! Please try again...',
+                'data': str(e)
+            }
+            logger.exception(str(e))
+            return Response(response)
 
 
 '''
@@ -149,9 +186,11 @@ class LogoutAPIView(generics.GenericAPIView):
             return Response(response)
         except Exception as e:
             response = ({
-                'success': True,
-                'msg': response_code[418]
+                'success': False,
+                'msg': response_code[418],
+                'data': str(e)
             })
+            logger.exception(str(e))
             return Response(response)
 
 
@@ -172,13 +211,16 @@ class UserProfileView(generics.GenericAPIView):
             response = ({
                 'Success': True,
                 'msg': response_code[200],
-                'data': allUser.data})
+                'data': allUser.data
+            })
             return Response(response)
         except Exception as e:
             response = ({
                 'success': False,
-                'msg': response_code[416]
+                'msg': response_code[416],
+                'data': str(e)
             })
+            logger.exception(str(e))
             return Response(response)
 
 
@@ -191,11 +233,20 @@ class LoginAPIView(generics.GenericAPIView):
     serializer_class = LoginSerializer
 
     def post(self, request):
-        serializer = self.serializer_class(data=request.data, context={'request': request})
-        serializer.is_valid(raise_exception=True)
-        response = {
-            'status': True,
-            'msg': response_code[419],
-            'data': serializer.data
-        }
-        return Response(response)
+        try:
+            serializer = self.serializer_class(data=request.data, context={'request': request})
+            serializer.is_valid(raise_exception=True)
+            response = {
+                'status': True,
+                'msg': response_code[419],
+                'data': serializer.data
+            }
+            return Response(response)
+        except Exception as e:
+            response = ({
+                'success': False,
+                'msg': response_code[416],
+                'data': str(e)
+            })
+            logger.exception(str(e))
+            return Response(response)

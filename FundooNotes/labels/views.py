@@ -1,6 +1,8 @@
 from rest_framework import status, generics, permissions
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
+
+from Fundoonotes import logger
 from Fundoonotes.Response import response_code
 from labels.models import Labels
 from labels.serializers import LabelSerializer
@@ -39,6 +41,7 @@ class LabelAPIView(generics.GenericAPIView):
                 'message': response_code[308],
                 'data': str(e)
             }
+            logger.exception(str(e))
             return Response(response)
         except Exception as e:
             response = {
@@ -46,6 +49,7 @@ class LabelAPIView(generics.GenericAPIView):
                 'message': response_code[416],
                 'data': str(e)
             }
+            logger.exception(str(e))
             return Response(response)
 
     def get(self, request):
@@ -66,6 +70,7 @@ class LabelAPIView(generics.GenericAPIView):
                 'message': 'Oops! Something went wrong! Please try again...',
                 'data': str(e)
             }
+            logger.exception(str(e))
             return Response(response)
 
 
@@ -108,22 +113,31 @@ class UpdateLabelsAPIView(generics.GenericAPIView):
     def put(self, request, *args, **kwargs):
         pk = self.kwargs.get('pk')
         note = self.get_objects(pk=pk)
-        serializer = LabelSerializer(note, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            note = Labels.objects.get(pk=pk)
-            note.save()
+        try:
+            serializer = LabelSerializer(note, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                note = Labels.objects.get(pk=pk)
+                note.save()
+                response = {
+                    'success': True,
+                    'message': response_code[200],
+                    'data': serializer.data
+                }
+                return Response(response)
             response = {
-                'success': True,
-                'message': response_code[200],
-                'data': serializer.data
+                'success': False,
+                'message': response_code[416],
             }
             return Response(response)
-        response = {
-            'success': False,
-            'message': response_code[416],
-        }
-        return Response(response)
+        except Exception as e:
+            response = {
+                'success': False,
+                'message': 'Oops! Something went wrong! Please try again...',
+                'data': str(e)
+            }
+            logger.exception(str(e))
+            return Response(response)
 
 
 '''class DeleteAPIView(generics.GenericAPIView):
@@ -148,4 +162,5 @@ class DeleteAPIView(generics.GenericAPIView):
                 'message': 'Oops! Something went wrong! Please try again...',
                 'data': str(e)
             }
-        return Response(response)
+            logger.exception(str(e))
+            return Response(response)

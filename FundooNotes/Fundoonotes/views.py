@@ -140,7 +140,8 @@ class DeleteAPIView(generics.GenericAPIView):
         except DoesNotExist as e:
             response = {
                 'success': False,
-                'message': response_code[307]
+                'message': response_code[307],
+                'data': str(e)
             }
             logger.exception(e)
             return Response(response)
@@ -148,6 +149,7 @@ class DeleteAPIView(generics.GenericAPIView):
             response = {
                 'success': False,
                 'message': response_code[416],
+                'data': str(e)
             }
             logger.exception(e)
             return Response(response)
@@ -195,26 +197,36 @@ class UpdateNotesAPIView(generics.GenericAPIView):
     def put(self, request, *args, **kwargs):
         pk = self.kwargs.get('pk')
         user_id = self.kwargs.get('user_id')
-        note = self.get_objects(pk=pk, user_id=user_id)
-        serializer = NotesSerializer(note, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            note = Notes.objects.get(pk=pk)
-            if note.isArchive:
-                note.isPinned = False
-                note.save()
+        try:
+            note = self.get_objects(pk=pk, user_id=user_id)
+            serializer = NotesSerializer(note, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                NoteRedis.update(key=user_id, value=serializer.data)
+                note = Notes.objects.get(pk=pk)
+                if note.isArchive:
+                    note.isPinned = False
+                    note.save()
+                response = {
+                    'success': True,
+                    'message': response_code[200],
+                    'data': serializer.data
+                }
+                return Response(response)
             response = {
-                'success': True,
-                'message': response_code[200],
-                'data': serializer.data
+                'success': False,
+                'message': response_code[416],
             }
+            logger.exception(response_code[416])
             return Response(response)
-        response = {
-            'success': False,
-            'message': response_code[416],
-        }
-        logger.exception(response_code[416])
-        return Response(response)
+        except Exception as e:
+            response = {
+                'success': False,
+                'message': response_code[416],
+                'data': str(e)
+            }
+            logger.exception(e)
+            return Response(response)
 
 
 '''
@@ -239,12 +251,13 @@ class AllArchiveNotesAPIView(generics.GenericAPIView):
                 "data": serializer.data
             }
             return Response(response)
-        except Exception:
+        except Exception as e:
             response = {
                 "success": False,
                 "msg": response_code[416],
+                'data': str(e)
             }
-            logger.exception(response_code[416])
+            logger.exception(str(e))
             return Response(response)
 
 
@@ -269,7 +282,7 @@ class ArchiveNotesAPIView(generics.GenericAPIView):
             note.save()
             response = {
                 'success': True,
-                'message': 'Notes isArchive successfully!'
+                'message': 'Notes is Archive successfully!'
             }
             return Response(response)
         except Exception as e:
@@ -304,12 +317,13 @@ class AllTrashNotesAPIView(generics.GenericAPIView):
                 "data": serializer.data
             }
             return Response(response)
-        except Exception:
+        except Exception as e:
             response = {
                 "success": False,
                 "msg": response_code[416],
+                'data': str(e)
             }
-            logger.exception(response_code[416])
+            logger.exception(str(e))
             return Response(response)
 
 
@@ -341,8 +355,9 @@ class TrashNotesAPIView(generics.GenericAPIView):
             response = {
                 "success": False,
                 "msg": response_code[416],
+                'data': str(e)
             }
-            logger.exception(response_code[416])
+            logger.exception(str(e))
             return Response(response)
 
 
@@ -368,12 +383,13 @@ class AllPinNotesAPIView(generics.GenericAPIView):
                 "data": serializer.data
             }
             return Response(response)
-        except Exception:
+        except Exception as e:
             response = {
                 "success": False,
                 "msg": response_code[416],
+                'data': str(e)
             }
-            logger.exception(response_code[416])
+            logger.exception(str(e))
             return Response(response)
 
 
@@ -405,8 +421,9 @@ class PinNotesAPIView(generics.GenericAPIView):
             response = {
                 'success': False,
                 'message': 'Oops! Something went wrong! Please try again...',
+                'data': str(e)
             }
-            logger.exception(response_code[416])
+            logger.exception(str(e))
             return Response(response)
 
 
@@ -423,10 +440,18 @@ class DisplayNoteByLabelView(generics.GenericAPIView):
     def get(self, request, label):
         notes = Notes.objects.filter(user_id=request.user.id, isTrash=False, label__contains=[str(label)])
         if notes.count() == 0:
-            response = ({'code': 409, 'msg': response_code[409]})
+            response = ({
+                'success': False,
+                'msg': response_code[409]
+            })
             return Response(response)
         serializer = NotesSerializer(notes, many=True)
-        return Response(serializer.data, status=200)
+        response = {
+            'success': True,
+            'msg': response_code[200],
+            'data': serializer.data
+        }
+        return Response(response)
 
 
 '''
@@ -471,8 +496,10 @@ class LabelNoteView(generics.GenericAPIView):
     def get(self, request):
         notes = Notes.objects.filter(label__in=[request.user.id], isTrash=False, isArchive=False)
         if notes.count() == 0:
-            response = ({'success': False,
-                         'msg': response_code[409]})
+            response = ({
+                'success': False,
+                'msg': response_code[409]
+            })
             return Response(response)
         serializer = NotesSerializer(notes, many=True)
         response = ({
