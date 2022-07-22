@@ -18,9 +18,12 @@ from users.status import response_code
 from users.utils import Util
 from django.conf import settings
 
-
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+
+'''
+RegisterView(generics.GenericAPIView) is for registering a new user
+'''
 
 
 class RegisterView(generics.GenericAPIView):
@@ -50,6 +53,11 @@ class RegisterView(generics.GenericAPIView):
             'data': user_data
         }
         return Response(response)
+
+
+'''
+VerifyEmail(generics.GenericAPIView) is for Verifying email for new user after registration
+'''
 
 
 class VerifyEmail(generics.GenericAPIView):
@@ -83,6 +91,11 @@ class VerifyEmail(generics.GenericAPIView):
             return Response(response)
 
 
+'''ForgotPasswordResetEmailAPIView(generics.GenericAPIView) is for it will send the link to email to reset the 
+password for existing user
+'''
+
+
 class ForgotPasswordResetEmailAPIView(generics.GenericAPIView):
     renderer_classes = [UserRenderer]
     serializer_class = ForgotPasswordSerializer
@@ -97,6 +110,11 @@ class ForgotPasswordResetEmailAPIView(generics.GenericAPIView):
         return Response(response)
 
 
+'''
+SetNewPasswordAPIView(generics.GenericAPIView) is for updating new password for Existing user
+'''
+
+
 class SetNewPasswordAPIView(generics.GenericAPIView):
     renderer_classes = [UserRenderer]
     serializer_class = UserPasswordResetSerializer
@@ -109,6 +127,11 @@ class SetNewPasswordAPIView(generics.GenericAPIView):
             'msg': response_code[308]
         }
         return Response(response)
+
+
+'''
+LogoutAPIView(generics.GenericAPIView) is for logging out the user
+'''
 
 
 class LogoutAPIView(generics.GenericAPIView):
@@ -132,13 +155,17 @@ class LogoutAPIView(generics.GenericAPIView):
             return Response(response)
 
 
+'''
+UserProfileView(generics.GenericAPIView) is for get all the users who have registered
+'''
+
+
 class UserProfileView(generics.GenericAPIView):
     renderer_classes = [UserRenderer]
     serializer_class = RegisterSerializer
     queryset = User.objects.all()
 
     def get(self, request):
-        Util.send_email({'email_subject': 'abc', 'email_body': 'hey', 'to_email': 'pavan.kal98@gmail.com'})
         try:
             user = User.objects.all()
             allUser = RegisterSerializer(user, many=True)
@@ -153,6 +180,11 @@ class UserProfileView(generics.GenericAPIView):
                 'msg': response_code[416]
             })
             return Response(response)
+
+
+'''
+LoginAPIView(generics.GenericAPIView) is for Login for user who have registered
+'''
 
 
 class LoginAPIView(generics.GenericAPIView):
