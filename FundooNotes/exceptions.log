@@ -1519,3 +1519,826 @@ Traceback (most recent call last):
   File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1674, in to_representation
     return [self.child.to_representation(item) if item is not None else None for item in data]
 TypeError: 'ManyRelatedManager' object is not iterable
+07/20/2022 01:23:44 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 44, in post
+    data = [{item.id: model_to_dict(item)} for item in model.objects.filter(user_id=user_id)]
+AttributeError: module 'pyexpat.model' has no attribute 'objects'
+07/20/2022 01:25:40 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 42, in post
+    data = [{item.id: model_to_dict(item)} for item in User.objects.filter(user_id=user_id)]
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1377, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1187, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'user_id' into field. Choices are: auth_token, collaborator, confirm_password, created_at, email, first_name, groups, id, is_active, is_staff, is_superuser, is_verified, labels, last_login, last_name, logentry, notes, otp, outstandingtoken, password, updated_at, user_permissions, username
+07/20/2022 01:26:01 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 42, in post
+    data = [{item.id: model_to_dict(item)} for item in User.objects.filter(user__id=user_id)]
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1377, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1187, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: auth_token, collaborator, confirm_password, created_at, email, first_name, groups, id, is_active, is_staff, is_superuser, is_verified, labels, last_login, last_name, logentry, notes, otp, outstandingtoken, password, updated_at, user_permissions, username
+07/20/2022 01:26:02 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 42, in post
+    data = [{item.id: model_to_dict(item)} for item in User.objects.filter(user__id=user_id)]
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1377, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1187, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: auth_token, collaborator, confirm_password, created_at, email, first_name, groups, id, is_active, is_staff, is_superuser, is_verified, labels, last_login, last_name, logentry, notes, otp, outstandingtoken, password, updated_at, user_permissions, username
+07/20/2022 01:26:31 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 42, in post
+    data = [{item.id: model_to_dict(item)} for item in User.objects.filter(user__id=user)]
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1377, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1187, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: auth_token, collaborator, confirm_password, created_at, email, first_name, groups, id, is_active, is_staff, is_superuser, is_verified, labels, last_login, last_name, logentry, notes, otp, outstandingtoken, password, updated_at, user_permissions, username
+07/20/2022 01:27:36 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 44, in post
+    data = [{item.id: model_to_dict(item)} for item in User.objects.filter(user__id=username)]
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1377, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1187, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: auth_token, collaborator, confirm_password, created_at, email, first_name, groups, id, is_active, is_staff, is_superuser, is_verified, labels, last_login, last_name, logentry, notes, otp, outstandingtoken, password, updated_at, user_permissions, username
+07/20/2022 01:27:37 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 44, in post
+    data = [{item.id: model_to_dict(item)} for item in User.objects.filter(user__id=username)]
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1377, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1187, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: auth_token, collaborator, confirm_password, created_at, email, first_name, groups, id, is_active, is_staff, is_superuser, is_verified, labels, last_login, last_name, logentry, notes, otp, outstandingtoken, password, updated_at, user_permissions, username
+07/20/2022 01:28:08 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 44, in post
+    data = [{item.id: model_to_dict(item)} for item in User.objects.filter(user_id=user)]
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1377, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1187, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'user_id' into field. Choices are: auth_token, collaborator, confirm_password, created_at, email, first_name, groups, id, is_active, is_staff, is_superuser, is_verified, labels, last_login, last_name, logentry, notes, otp, outstandingtoken, password, updated_at, user_permissions, username
+07/20/2022 01:28:09 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 44, in post
+    data = [{item.id: model_to_dict(item)} for item in User.objects.filter(user_id=user)]
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1502, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1532, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1377, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1187, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'user_id' into field. Choices are: auth_token, collaborator, confirm_password, created_at, email, first_name, groups, id, is_active, is_staff, is_superuser, is_verified, labels, last_login, last_name, logentry, notes, otp, outstandingtoken, password, updated_at, user_permissions, username
+07/20/2022 01:34:46 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 58, in post
+    update_cache(user.id, Notes)
+TypeError: update_cache() missing 1 required positional argument: 'model'
+07/20/2022 01:36:08 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 56, in post
+    update_cache(user.id, Notes)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 35, in update_cache
+    cache_data = Redis.set(user_id, json.dumps(data))
+AttributeError: 'dict' object has no attribute 'set'
+07/20/2022 01:36:59 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 56, in post
+    update_cache(user.id, [Notes])
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 34, in update_cache
+    data = [{item.id: model_to_dict(item)} for item in model.objects.filter(user_id=user_id)]
+AttributeError: 'list' object has no attribute 'objects'
+07/20/2022 01:42:06 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 62, in post
+    update_cache(user.id, [Notes])
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in update_cache
+    cache_data = Redis.set(user_id, json.dumps(data))
+AttributeError: 'dict' object has no attribute 'set'
+07/20/2022 01:42:23 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 62, in post
+    update_cache(user.id)
+TypeError: update_cache() missing 1 required positional argument: 'model'
+07/20/2022 01:43:54 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 62, in post
+    update_cache(user.id, model=note)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in update_cache
+    cache_data = Redis.set(user_id, json.dumps(data))
+AttributeError: 'dict' object has no attribute 'set'
+07/20/2022 01:44:28 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 62, in post
+    update_cache(user.id, model=data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 39, in update_cache
+    cache_data = Redis.set(user_id, json.dumps(data))
+AttributeError: 'dict' object has no attribute 'set'
+07/20/2022 07:44:58 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 49, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/20/2022 07:47:04 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 49, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/20/2022 10:25:51 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 52, in post
+    rem = datetime.datetime.strptime(remainder, "%Y-%m-%d %H:%M:%S")
+TypeError: strptime() argument 1 must be str, not list
+07/20/2022 10:26:22 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 52, in post
+    rem = datetime.datetime.strptime(remainder, "%Y-%m-%d %H:%M:%S")
+  File "/usr/lib/python3.8/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.8/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '2323-20-2-23' does not match format '%Y-%m-%d %H:%M:%S'
+07/20/2022 10:26:47 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 52, in post
+    rem = datetime.datetime.strptime(remainder, "%Y-%m-%d %H:%M:%S")
+  File "/usr/lib/python3.8/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.8/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '2323-20-2-23-30-20' does not match format '%Y-%m-%d %H:%M:%S'
+07/20/2022 10:29:42 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 52, in post
+    rem = datetime.datetime.strptime(remainder, "%Y-%m-%d %H:%M:%S")
+  File "/usr/lib/python3.8/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.8/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '2323,20,2,23,30,20' does not match format '%Y-%m-%d %H:%M:%S'
+07/20/2022 10:30:42 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 52, in post
+    rem = datetime.datetime.strptime(remainder, "%Y-%m-%d %H:%M:%S")
+  File "/usr/lib/python3.8/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.8/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '2022/07/20 18:54:55.099' does not match format '%Y-%m-%d %H:%M:%S'
+07/20/2022 10:32:30 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 52, in post
+    rem = datetime.datetime.strptime(remainder, "%Y-%m-%d %H:%M:%S")
+  File "/usr/lib/python3.8/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.8/_strptime.py", line 352, in _strptime
+    raise ValueError("unconverted data remains: %s" %
+ValueError: unconverted data remains: .099
+07/20/2022 10:32:42 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 60, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/20/2022 10:33:00 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 52, in post
+    rem = datetime.datetime.strptime(remainder, "%Y-%m-%d %H:%M:%S")
+TypeError: strptime() argument 1 must be str, not list
+07/20/2022 10:33:15 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 60, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 03:48:50 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 449, in get
+    notes = redis_django.Get(user.id + "note")
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+07/21/2022 04:01:47 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 449, in get
+    notes = redis_django.Get(user.id + "note")
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+07/21/2022 04:02:12 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 449, in get
+    notes = redis_django.Get(user.id + "note")
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+07/21/2022 04:02:13 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 449, in get
+    notes = redis_django.Get(user.id + "note")
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+07/21/2022 04:02:13 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 449, in get
+    notes = redis_django.Get(user.id + "note")
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+07/21/2022 04:02:14 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 449, in get
+    notes = redis_django.Get(user.id + "note")
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+07/21/2022 04:02:14 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 449, in get
+    notes = redis_django.Get(user.id + "note")
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+07/21/2022 04:55:15 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 425, in get
+    RedisService.set(redis_key, serializer.data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoo/redis_django.py", line 11, in set
+    cls.redis_object.set(user_id, data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/commands/core.py", line 2220, in set
+    return self.execute_command("SET", *pieces, **options)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/client.py", line 1238, in execute_command
+    return conn.retry.call_with_retry(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/client.py", line 1239, in <lambda>
+    lambda: self._send_command_parse_response(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/client.py", line 1214, in _send_command_parse_response
+    conn.send_command(*args)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/connection.py", line 800, in send_command
+    self.pack_command(*args), check_health=kwargs.get("check_health", True)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/connection.py", line 858, in pack_command
+    for arg in map(self.encoder.encode, args):
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/connection.py", line 108, in encode
+    raise DataError(
+redis.exceptions.DataError: Invalid input of type: 'ReturnList'. Convert to a bytes, string, int or float first.
+07/21/2022 05:00:05 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 425, in get
+    RedisService.set(redis_key, serializer.data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoo/redis_django.py", line 11, in set
+    cls.redis_object.set(user_id, data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/commands/core.py", line 2220, in set
+    return self.execute_command("SET", *pieces, **options)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/client.py", line 1238, in execute_command
+    return conn.retry.call_with_retry(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/client.py", line 1239, in <lambda>
+    lambda: self._send_command_parse_response(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/client.py", line 1214, in _send_command_parse_response
+    conn.send_command(*args)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/connection.py", line 800, in send_command
+    self.pack_command(*args), check_health=kwargs.get("check_health", True)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/connection.py", line 858, in pack_command
+    for arg in map(self.encoder.encode, args):
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/connection.py", line 108, in encode
+    raise DataError(
+redis.exceptions.DataError: Invalid input of type: 'ReturnList'. Convert to a bytes, string, int or float first.
+07/21/2022 05:00:06 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 425, in get
+    RedisService.set(redis_key, serializer.data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoo/redis_django.py", line 11, in set
+    cls.redis_object.set(user_id, data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/commands/core.py", line 2220, in set
+    return self.execute_command("SET", *pieces, **options)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/client.py", line 1238, in execute_command
+    return conn.retry.call_with_retry(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/client.py", line 1239, in <lambda>
+    lambda: self._send_command_parse_response(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/client.py", line 1214, in _send_command_parse_response
+    conn.send_command(*args)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/connection.py", line 800, in send_command
+    self.pack_command(*args), check_health=kwargs.get("check_health", True)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/connection.py", line 858, in pack_command
+    for arg in map(self.encoder.encode, args):
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/connection.py", line 108, in encode
+    raise DataError(
+redis.exceptions.DataError: Invalid input of type: 'ReturnList'. Convert to a bytes, string, int or float first.
+07/21/2022 05:00:12 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 425, in get
+    RedisService.set(redis_key, serializer.data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoo/redis_django.py", line 11, in set
+    cls.redis_object.set(user_id, data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/commands/core.py", line 2220, in set
+    return self.execute_command("SET", *pieces, **options)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/client.py", line 1238, in execute_command
+    return conn.retry.call_with_retry(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/client.py", line 1239, in <lambda>
+    lambda: self._send_command_parse_response(
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/client.py", line 1214, in _send_command_parse_response
+    conn.send_command(*args)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/connection.py", line 800, in send_command
+    self.pack_command(*args), check_health=kwargs.get("check_health", True)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/connection.py", line 858, in pack_command
+    for arg in map(self.encoder.encode, args):
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/redis/connection.py", line 108, in encode
+    raise DataError(
+redis.exceptions.DataError: Invalid input of type: 'ReturnList'. Convert to a bytes, string, int or float first.
+07/21/2022 10:16:59 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 58, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 10:17:16 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 58, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 10:52:51 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 58, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 10:53:22 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 58, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 03:28:13 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 58, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 03:37:55 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    rem = datetime.datetime.strptime(remainder, "%Y-%m-%d %H:%M:%S")
+  File "/usr/lib/python3.8/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.8/_strptime.py", line 352, in _strptime
+    raise ValueError("unconverted data remains: %s" %
+ValueError: unconverted data remains: .240
+07/21/2022 03:38:01 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 58, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 03:38:11 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    rem = datetime.datetime.strptime(remainder, "%Y-%m-%d %H:%M:%S")
+  File "/usr/lib/python3.8/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.8/_strptime.py", line 352, in _strptime
+    raise ValueError("unconverted data remains: %s" %
+ValueError: unconverted data remains: .240
+07/21/2022 03:38:17 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 50, in post
+    rem = datetime.datetime.strptime(remainder, "%Y-%m-%d %H:%M:%S")
+  File "/usr/lib/python3.8/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.8/_strptime.py", line 352, in _strptime
+    raise ValueError("unconverted data remains: %s" %
+ValueError: unconverted data remains: .2
+07/21/2022 03:38:22 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 58, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 03:41:49 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 58, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 03:41:51 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 58, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 03:51:57 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 102, in get
+    'data': data(),
+TypeError: 'dict' object is not callable
+07/21/2022 03:52:00 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 102, in get
+    'data': data(),
+TypeError: 'dict' object is not callable
+07/21/2022 03:54:19 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 102, in get
+    'data': data.keys.values(),
+AttributeError: 'builtin_function_or_method' object has no attribute 'values'
+07/21/2022 07:12:16 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 51, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 07:24:09 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 97, in get
+    'data': data(),
+TypeError: 'dict' object is not callable
+07/21/2022 07:25:00 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 97, in get
+    'data': data(),
+TypeError: 'dict' object is not callable
+07/21/2022 07:25:02 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 97, in get
+    'data': data(),
+TypeError: 'dict' object is not callable
+07/21/2022 07:27:32 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 97, in get
+    'data': data(),
+TypeError: 'dict' object is not callable
+07/21/2022 07:29:02 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 88, in get
+    data3 = data1+data2
+TypeError: unsupported operand type(s) for +: 'dict_keys' and 'dict_values'
+07/21/2022 07:30:46 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 95, in get
+    'data': data(),
+TypeError: 'dict' object is not callable
+07/21/2022 07:36:34 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 98, in get
+    'data': data(),
+TypeError: 'dict' object is not callable
+07/21/2022 07:43:53 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 98, in get
+    'data': data(),
+TypeError: 'dict' object is not callable
+07/21/2022 07:44:11 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 98, in get
+    'data': data(),
+TypeError: 'dict' object is not callable
+07/21/2022 07:46:49 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 88, in get
+    for key, value in data.iteritems():
+AttributeError: 'dict' object has no attribute 'iteritems'
+07/21/2022 07:48:51 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 98, in get
+    'data': data(),
+TypeError: 'dict' object is not callable
+07/21/2022 07:48:53 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 98, in get
+    'data': data(),
+TypeError: 'dict' object is not callable
+07/21/2022 07:49:53 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 98, in get
+    'data': data2(),
+TypeError: 'list' object is not callable
+07/21/2022 07:49:54 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 98, in get
+    'data': data2(),
+TypeError: 'list' object is not callable
+07/21/2022 07:51:34 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 98, in get
+    'data': data2(),
+TypeError: 'list' object is not callable
+07/21/2022 07:57:40 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 100, in get
+    'data': data2(),
+TypeError: 'dict' object is not callable
+07/21/2022 08:22:53 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 410, in post
+    rem = datetime.datetime.strptime(remainder, "%Y-%m-%d %H:%M:%S")
+  File "/usr/lib/python3.8/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.8/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '12/11/2018 09:15:32' does not match format '%Y-%m-%d %H:%M:%S'
+07/21/2022 08:23:23 PM : Fundoonotes.logger : 
+07/21/2022 08:23:37 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 410, in post
+    rem = datetime.datetime.strptime(remainder, "%Y-%m-%d %H:%M:%S")
+  File "/usr/lib/python3.8/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.8/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '2022/11/20 09:15:32' does not match format '%Y-%m-%d %H:%M:%S'
+07/21/2022 08:23:49 PM : Fundoonotes.logger : 
+07/21/2022 08:32:37 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 417, in post
+    serializer.save()
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 08:33:04 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 417, in post
+    serializer.save()
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 17, in create
+    user = validated_data['user_id']
+KeyError: 'user_id'
+07/21/2022 08:34:15 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 417, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 08:34:39 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 417, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 08:34:40 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 417, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 08:45:23 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 423, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 08:48:55 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 423, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 08:49:21 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 424, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 08:52:03 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 424, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 08:52:05 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 424, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 08:52:39 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 423, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/21/2022 08:52:40 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 423, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/22/2022 02:53:32 AM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 51, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/22/2022 05:13:32 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 79, in get
+    data = serializer.data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+TypeError: 'method' object is not iterable
+07/22/2022 05:16:11 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 79, in get
+    data = serializer.data
+AttributeError: 'dict' object has no attribute 'data'
+07/22/2022 05:17:17 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 42, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/22/2022 05:17:23 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 42, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/22/2022 05:17:27 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 42, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/22/2022 05:17:48 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 42, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/22/2022 05:18:15 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 42, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/22/2022 05:18:52 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 42, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
+07/22/2022 05:19:00 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 42, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 18, in create
+    collaborator = validated_data.pop('collaborator')
+KeyError: 'collaborator'
+07/22/2022 05:21:28 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 42, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 184, in save
+    assert not self.errors, (
+AssertionError: You cannot call `.save()` on a serializer with invalid data.
