@@ -1,10 +1,10 @@
 from rest_framework import serializers
 from rest_framework.response import Response
 from users.models import User
-from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.utils.encoding import smart_str, force_bytes, DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from users.utils import Util
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -85,13 +85,13 @@ class ForgotPasswordSerializer(serializers.ModelSerializer):
                 'to_email': user.email
             }
             print(data)
-            # Util.send_email(data)
+            Util.send_email(data)
             return Response(data)
         # else:
         #     raise serializers.ValidationError('You are not a Registered User')
 
 
-class UserPasswordResetSerializer(serializers.Serializer):
+class UserPasswordResetSerializer(serializers.ModelSerializer):
     password = serializers.CharField(max_length=255, style={'input_type': 'password'}, write_only=True)
     confirm_password = serializers.CharField(max_length=255, style={'input_type': 'password'}, write_only=True)
 
