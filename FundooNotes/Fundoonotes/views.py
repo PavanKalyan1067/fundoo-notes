@@ -1,4 +1,5 @@
 from django.conf import settings
+
 from rest_framework import generics, permissions
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
@@ -8,7 +9,6 @@ from users.models import User
 from .logger import get_logger
 from .models import Notes
 from Fundoonotes.exceptions import DoesNotExist
-from rest_framework.views import APIView
 from .serializers import NotesSerializer, TrashSerializer, PinSerializer
 from Fundoonotes.Response import response_code
 from .utils import NoteRedis
@@ -24,6 +24,14 @@ def get_user(token):
     username = encodedToken['username']
     user = User.objects.get(username=username)
     return user.id
+
+
+'''
+CreateAPIView(generics.GenericAPIView):
+    def post(self, request):
+        post method will be responsible for create notes and save it into database. Serializer will be responsible for
+        validation and serialize the data.
+'''
 
 
 class CreateAPIView(generics.GenericAPIView):
@@ -63,7 +71,14 @@ class CreateAPIView(generics.GenericAPIView):
             return Response(response)
 
 
-class RetrieveAPIView(APIView):
+'''
+RetrieveAPIView(generics.GenericAPIView):
+    def get(self, request):  
+        get method will fetch all the notes for logged in user and display all the notes
+'''
+
+
+class RetrieveAPIView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
@@ -106,7 +121,13 @@ class RetrieveAPIView(APIView):
             return Response(response)
 
 
-class DeleteAPIView(APIView):
+'''
+class DeleteAPIView(generics.GenericAPIView):
+        delete method is responsible to delete any single note object witch is fetched by get method.
+'''
+
+
+class DeleteAPIView(generics.GenericAPIView):
     def delete(self, request, pk):
         try:
             data = Notes.objects.get(pk=pk)
@@ -130,6 +151,18 @@ class DeleteAPIView(APIView):
             }
             logger.exception(e)
             return Response(response)
+
+
+'''
+class UpdateNotesAPIView(generics.GenericAPIView):
+This class have 3 methods.
+    1.     def get_objects(self, pk, user_id): 
+        get_object method will fetch single object by unique id. If object is not there it will raise DoesNotExistException
+    2.     def get(self, request, *args, **kwargs):
+        get method will display single note object according to serializer field.
+    3.     def put(self, request, *args, **kwargs):
+        put method is responsible for update any single note object witch is fetched by get method.
+'''
 
 
 class UpdateNotesAPIView(generics.GenericAPIView):
@@ -184,6 +217,12 @@ class UpdateNotesAPIView(generics.GenericAPIView):
         return Response(response)
 
 
+'''
+class AllArchiveNotesAPIView(generics.GenericAPIView):
+        will get and display all Archive notes for login user.
+'''
+
+
 class AllArchiveNotesAPIView(generics.GenericAPIView):
     serializer_class = NotesSerializer
     queryset = Notes.objects.all()
@@ -209,10 +248,16 @@ class AllArchiveNotesAPIView(generics.GenericAPIView):
             return Response(response)
 
 
+'''
+class ArchiveNotesAPIView(generics.GenericAPIView):
+        will post if you want to Archive the note  .
+'''
+
+
 class ArchiveNotesAPIView(generics.GenericAPIView):
     serializer_class = NotesSerializer
 
-    def post(self, request, *args, **kwar):
+    def post(self, request, *args, **kwargs):
         pk = self.kwargs.get('pk')
         note_id = pk
         note = Notes.objects.get(id=note_id)
@@ -231,9 +276,16 @@ class ArchiveNotesAPIView(generics.GenericAPIView):
             response = {
                 "success": False,
                 "msg": response_code[416],
+                'data': str(e)
             }
-            logger.exception(response_code[416])
+            logger.exception(str(e))
             return Response(response)
+
+
+'''
+class AllTrashNotesAPIView(generics.GenericAPIView):
+        will get and display all Trashed notes for login user.
+'''
 
 
 class AllTrashNotesAPIView(generics.GenericAPIView):
@@ -261,10 +313,16 @@ class AllTrashNotesAPIView(generics.GenericAPIView):
             return Response(response)
 
 
+'''
+class TrashNotesAPIView(generics.GenericAPIView):
+        will post if you want to Trash the note  .
+'''
+
+
 class TrashNotesAPIView(generics.GenericAPIView):
     serializer_class = NotesSerializer
 
-    def post(self, request, *args, **kwar):
+    def post(self, request, *args, **kwargs):
         pk = self.kwargs.get('pk')
         note_id = pk
         note = Notes.objects.get(id=note_id)
@@ -286,6 +344,12 @@ class TrashNotesAPIView(generics.GenericAPIView):
             }
             logger.exception(response_code[416])
             return Response(response)
+
+
+'''
+class AllPinNotesAPIView(generics.GenericAPIView):
+        will get and display all Pinned notes for login user.
+'''
 
 
 class AllPinNotesAPIView(generics.GenericAPIView):
@@ -313,10 +377,16 @@ class AllPinNotesAPIView(generics.GenericAPIView):
             return Response(response)
 
 
+'''
+class PinNotesAPIView(generics.GenericAPIView):
+        will post if you want to Pin the note  .
+'''
+
+
 class PinNotesAPIView(generics.GenericAPIView):
     serializer_class = NotesSerializer
 
-    def put(self, request, *args, **kwar):
+    def put(self, request, *args, **kwargs):
         pk = self.kwargs.get('pk')
         note_id = pk
         note = Notes.objects.get(id=note_id)
@@ -340,6 +410,12 @@ class PinNotesAPIView(generics.GenericAPIView):
             return Response(response)
 
 
+'''
+class DisplayNoteByLabelView(generics.GenericAPIView):
+        will get and display all labels for notes for login user.
+'''
+
+
 class DisplayNoteByLabelView(generics.GenericAPIView):
     serializer_class = NotesSerializer
     queryset = Notes.objects.all()
@@ -347,10 +423,16 @@ class DisplayNoteByLabelView(generics.GenericAPIView):
     def get(self, request, label):
         notes = Notes.objects.filter(user_id=request.user.id, isTrash=False, label__contains=[str(label)])
         if notes.count() == 0:
-            response=({'code': 409, 'msg': response_code[409]})
+            response = ({'code': 409, 'msg': response_code[409]})
             return Response(response)
         serializer = NotesSerializer(notes, many=True)
         return Response(serializer.data, status=200)
+
+
+'''
+class CollaboratedNoteView(generics.GenericAPIView):
+        will get and display all collaborated  notes for login user.
+'''
 
 
 class CollaboratedNoteView(generics.GenericAPIView):
@@ -375,6 +457,12 @@ class CollaboratedNoteView(generics.GenericAPIView):
         return Response(response)
 
 
+'''
+class LabelNoteView(generics.GenericAPIView):
+        will get and display all notes by labels for login user.
+'''
+
+
 class LabelNoteView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = NotesSerializer
@@ -383,54 +471,13 @@ class LabelNoteView(generics.GenericAPIView):
     def get(self, request):
         notes = Notes.objects.filter(label__in=[request.user.id], isTrash=False, isArchive=False)
         if notes.count() == 0:
-            return Response({'code': 409, 'msg': response_code[409]})
+            response = ({'success': False,
+                         'msg': response_code[409]})
+            return Response(response)
         serializer = NotesSerializer(notes, many=True)
-        return Response({"data": serializer.data, "code": 200, "msg": response_code[200]})
-
-
-# from datetime import datetime
-# from .exceptions import PassedTimeException
-#
-#
-# def validate_time(time_data):
-#     now = datetime.now()
-#     current_time = now.strftime("%H:%M")
-#     if time_data < current_time:
-#         raise PassedTimeException
-
-
-# class CreateAPIView1(generics.GenericAPIView):
-#     serializer_class = NotesSerializer
-#     queryset = Notes.objects.all()
-#     permission_classes = [permissions.IsAuthenticated]
-#
-#     def post(self, request):
-#         data = request.data
-#         user_id = request.user.id
-#         user = request.user
-#         try:
-#             serializer = NotesSerializer1(data=data, partial=True)
-#             if serializer.is_valid(raise_exception=True):
-#                 serializer.save(user_id=user.id)
-#                 reminder = request.data['reminder']
-#
-#                 data = serializer.data
-#                 print(data)
-#                 return Response(data, status=status.HTTP_201_CREATED)
-#             return Response(status.HTTP_400_BAD_REQUEST)
-#
-#         except ValidationError as e:
-#             response = {
-#                 'success': False,
-#                 'message': response_code[308],
-#                 'data': str(e)
-#             }
-#             logger.exception(str(e))
-#             return Response(response)
-#         except Exception as e:
-#             response = {
-#                 'success': False,
-#                 'message': response_code[416],
-#                 'data': str(e)}
-#             logger.exception(str(e))
-#             return Response(response)
+        response = ({
+            "success": True,
+            "msg": response_code[200],
+            "data": serializer.data,
+        })
+        return Response(response)
