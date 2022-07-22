@@ -1,9 +1,4 @@
-from django.core.mail import send_mail
 from rest_framework import generics
-from users.exceptions import (
-    PasswordDidntMatched,
-    PasswordPatternMatchError
-)
 from rest_framework_jwt.settings import api_settings
 from users.serializers import (
     RegisterSerializer,
@@ -22,7 +17,7 @@ from django.urls import reverse
 from users.status import response_code
 from users.utils import Util
 from django.conf import settings
-from users.validate import validate_password_match, validate_password_pattern_match
+
 
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -30,6 +25,7 @@ jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 
 class RegisterView(generics.GenericAPIView):
     serializer_class = RegisterSerializer
+
     renderer_classes = (UserRenderer,)
 
     def post(self, request):
@@ -45,13 +41,13 @@ class RegisterView(generics.GenericAPIView):
         absurl = 'http://' + current_site + relativeLink + "?token=" + str(token)
         email_body = 'Hi ' + user.username + \
                      ' Use the link below to verify your email \n' + absurl
-        data = {'email_body': email_body, 'to_email': user.email,
+        data = {'email_body': email_body, 'to_email': user.email, 'from_email': settings.EMAIL_HOST_USER,
                 'email_subject': 'Verify your email'}
         Util.send_email(data)
         response = {
             'success': True,
             'msg': response_code[200],
-            'data': data
+            'data': user_data
         }
         return Response(response)
 
@@ -89,6 +85,7 @@ class VerifyEmail(generics.GenericAPIView):
 
 class ForgotPasswordResetEmailAPIView(generics.GenericAPIView):
     renderer_classes = [UserRenderer]
+    serializer_class = ForgotPasswordSerializer
 
     def post(self, request):
         serializer = ForgotPasswordSerializer(data=request.data)
@@ -102,6 +99,7 @@ class ForgotPasswordResetEmailAPIView(generics.GenericAPIView):
 
 class SetNewPasswordAPIView(generics.GenericAPIView):
     renderer_classes = [UserRenderer]
+    serializer_class = UserPasswordResetSerializer
 
     def post(self, request, uid, token):
         serializer = UserPasswordResetSerializer(data=request.data, context={'uid': uid, 'token': token})
@@ -114,6 +112,8 @@ class SetNewPasswordAPIView(generics.GenericAPIView):
 
 
 class LogoutAPIView(generics.GenericAPIView):
+    serializer_class = RegisterSerializer
+
     def post(self, request):
         try:
             Refresh_token = request.data["refresh"]
