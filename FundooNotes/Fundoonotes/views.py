@@ -1,16 +1,15 @@
 from django.conf import settings
-
 from rest_framework import generics, permissions
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework_jwt.settings import api_settings
 
+from Fundoonotes.Response import response_code
+from Fundoonotes.exceptions import DoesNotExist
 from users.models import User
 from .logger import get_logger
 from .models import Notes
-from Fundoonotes.exceptions import DoesNotExist
 from .serializers import NotesSerializer, TrashSerializer, PinSerializer
-from Fundoonotes.Response import response_code
 from .utils import NoteRedis
 
 logger = get_logger()
@@ -40,13 +39,14 @@ class CreateAPIView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
+        user = request.user
         user_id = request.user.id
         user = request.user
         try:
             serializer = NotesSerializer(data=request.data, partial=True)
-            serializer.is_valid()
+            serializer.is_valid(raise_exception=True)
             serializer.save(user_id=user.id)
-            NoteRedis.save(key=user_id, value=serializer.data)
+            NoteRedis.update(user_id=user_id, note_dict=serializer.data)
             data = serializer.data
             response = {
                 'success': True,
@@ -85,20 +85,12 @@ class RetrieveAPIView(generics.GenericAPIView):
         try:
             user = request.user
             if user:
-                data = NoteRedis.extract(key=user.id)
-                print(data)
-                # data3 = [(k, data[k]) for k in data]
-                # print(data3)
-                # notes = Notes.objects.filter(user=request.user, isTrash=False, isArchive=False)
-                # serializer = GetNoteSerializer(notes, many=True)
-                # logger.info('Getting the notes data on %s', timezone.now())
-                # serialized_data = serializer.data
-                # for note in serialized_data:
-                #     NoteRedis.save(key=user.id,value=note)
+                data = NoteRedis.extract(user_id=user.id)
+                print(len(data))
                 response = {
                     'success': True,
                     'message': response_code[200],
-                    'data': data,
+                    'data': data.values(),
                 }
                 logger.info('successfully get Notes from database')
                 return Response(response)
@@ -202,7 +194,7 @@ class UpdateNotesAPIView(generics.GenericAPIView):
             serializer = NotesSerializer(note, data=request.data)
             if serializer.is_valid():
                 serializer.save()
-                NoteRedis.update(key=user_id, value=serializer.data)
+                NoteRedis.update(user_id=user_id, note_dict=serializer.data)
                 note = Notes.objects.get(pk=pk)
                 if note.isArchive:
                     note.isPinned = False

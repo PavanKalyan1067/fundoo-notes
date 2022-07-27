@@ -1,4 +1,5 @@
-import email
+from time import sleep
+from celery import shared_task
 
 from Fundoo import settings
 from django.core.mail import send_mail
@@ -15,6 +16,12 @@ class EmailThread(threading.Thread):
 
     def run(self):
         self.email.send()
+
+
+@shared_task
+def sleepy(duration):
+    sleep(duration)
+    return None
 
 
 class Util:
@@ -35,23 +42,10 @@ class Util:
         send_mail(subject, message, recipient_list=recipient_list, from_email=from_email)
 
     @staticmethod
+    @shared_task
     def django_email(data):
         email = EmailMessage(
             subject=data['email_subject'], body=data['email_body'], from_email=data['from_email'],
             to=[data['to_email']])
         # server.quit()
         EmailThread(email).start()
-# class Util:
-#     @staticmethod
-#     def send_email(data):
-#         email = EmailMessage(
-#             subject=data['subject'],
-#             body=data['body'],
-#             from_email='princeabhi966@gmail.com',
-#             to=['abhilashmeher1234@gmail.com']
-#         )
-#         email.send()
-
-
-# if __name__ == '__main__':
-#     Util.send_email({'email_subject': 'abc', 'email_body': 'hey', 'to_email': 'pavan.kal98@gmail.com'})

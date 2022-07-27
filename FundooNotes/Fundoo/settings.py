@@ -83,36 +83,21 @@ TEMPLATES = [
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'fundoonotes',
-        'USER': 'postgres',
-        'PASSWORD': 'fundoonotes1',
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
-#
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'database',
-#         'USER': 'postgres',
-#         'PASSWORD': 'fundoonotes1',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     }
-# }
+print(os.environ.get('DB_PASSWORD'))
+print(os.environ.get('DB_USER'))
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'users.backends.JWTAuthentication',
     ],
@@ -168,47 +153,13 @@ JWT_SECRET_KEY = 'JWT_SECRET_KEY'
 
 AUTH_USER_MODEL = 'users.User'
 
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": "redis://127.0.0.1:6379/1",
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient"
-#         },
-#         "KEY_PREFIX": "example"
-#     }
-# }
-
 CACHE_TTL = 60 * 15
 
-# SWAGGER_SETTINGS = {
-#     # 'USE_SESSION_AUTH': False,
-#     'SECURITY_DEFINITIONS': {
-#         'Basic': {
-#             'type': 'basic'
-#         },
-#         'Bearer': {
-#             'type': 'apiKey',
-#             'name': 'Authorization',
-#             'in': 'header'
-#         }
-#     }
-# }
-
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'pavan.kal98@gmail.com'
-EMAIL_HOST_PASSWORD = 'wxqlwbogdlqrpcyw'
-# EMAIL_USE_TSL = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
-print(os.environ.get("EMAIL_HOST"))
-print(os.environ.get("EMAIL_PORT"))
-print(os.environ.get("EMAIL_HOST_USER"))
-print(os.environ.get("EMAIL_USE_TSL"))
 
 REDIS_SETTINGS = {'db': 0, 'host': "localhost", 'port': 6379}
 

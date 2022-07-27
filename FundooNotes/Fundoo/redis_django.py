@@ -1,10 +1,9 @@
 import redis
-
-redis_data = {'db': 0, 'host': "localhost", 'port': 6379}
+from django.conf import settings
 
 
 class RedisService:
-    redis_object = redis.Redis(**redis_data)
+    redis_object = redis.Redis(**settings.REDIS_SETTINGS)
 
     @classmethod
     def set(cls, user_id, data):
@@ -19,10 +18,9 @@ class RedisService:
             raise e
 
     @classmethod
-    def Del(cls, user_id):
-
+    def delete(cls, user_id):
         cls.redis_object.delete(cls, user_id)
 
     @classmethod
-    def All_Delete(cls):
+    def all_delete(cls):
         cls.redis_object.flushall()

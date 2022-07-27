@@ -1,9 +1,16 @@
 from unittest import TestCase
 
 from django.urls import reverse, resolve
-from Fundoonotes.views import CreateAPIView, ArchiveNotesAPIView, AllArchiveNotesAPIView, AllTrashNotesAPIView, \
-    TrashNotesAPIView, AllPinNotesAPIView, PinNotesAPIView, CollaboratedNoteView, LabelNoteView, UpdateNotesAPIView, \
+
+from Fundoonotes.views import (
+    CreateAPIView,
+    ArchiveNotesAPIView,
+    AllArchiveNotesAPIView,
+    AllTrashNotesAPIView,
+    TrashNotesAPIView, AllPinNotesAPIView, PinNotesAPIView, CollaboratedNoteView,
+    LabelNoteView, UpdateNotesAPIView,
     DeleteAPIView, RetrieveAPIView
+)
 
 
 class TestUrls(TestCase):
@@ -37,15 +44,15 @@ class TestUrls(TestCase):
         self.assertEqual(resolve(url).func.view_class, AllPinNotesAPIView)
 
     def test_pin_note_url(self):
-        url = reverse('pin', kwargs={'pk': 20})
+        url = reverse('pin-notes', kwargs={'pk': 20})
         self.assertEqual(resolve(url).func.view_class, PinNotesAPIView)
 
     def test_trash_note_url(self):
-        url = reverse('trash', kwargs={'pk': 25})
+        url = reverse('trash-notes', kwargs={'pk': 25})
         self.assertEqual(resolve(url).func.view_class, TrashNotesAPIView)
 
     def test_archive_note_url(self):
-        url = reverse('archive', kwargs={'pk': 40})
+        url = reverse('archive-notes', kwargs={'pk': 40})
         self.assertEqual(resolve(url).func.view_class, ArchiveNotesAPIView)
 
     def test_collaborate_note_url(self):

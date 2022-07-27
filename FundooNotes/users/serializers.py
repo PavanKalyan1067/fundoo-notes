@@ -91,7 +91,7 @@ class ForgotPasswordSerializer(serializers.ModelSerializer):
         #     raise serializers.ValidationError('You are not a Registered User')
 
 
-class UserPasswordResetSerializer(serializers.ModelSerializer):
+class UserPasswordResetSerializer(serializers.Serializer):
     password = serializers.CharField(max_length=255, style={'input_type': 'password'}, write_only=True)
     confirm_password = serializers.CharField(max_length=255, style={'input_type': 'password'}, write_only=True)
 
