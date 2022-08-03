@@ -5742,3 +5742,115 @@ Traceback (most recent call last):
   File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
     raise self.model.DoesNotExist(
 users.models.User.DoesNotExist: User matching query does not exist.
+08/02/2022 06:12:34 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 48, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 18, in create
+    collaborator = validated_data.pop('collaborator')
+KeyError: 'collaborator'
+08/02/2022 06:12:34 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 48, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 18, in create
+    collaborator = validated_data.pop('collaborator')
+KeyError: 'collaborator'
+08/02/2022 06:12:34 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/users/views.py", line 242, in post
+    'data': serializer.data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 255, in data
+    self._data = self.to_representation(self.validated_data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/users/serializers.py", line 149, in get_tokens
+    user = User.objects.get(email=obj['email'])
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+users.models.User.DoesNotExist: User matching query does not exist.
+08/02/2022 06:12:34 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/users/views.py", line 242, in post
+    'data': serializer.data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 255, in data
+    self._data = self.to_representation(self.validated_data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/users/serializers.py", line 149, in get_tokens
+    user = User.objects.get(email=obj['email'])
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+users.models.User.DoesNotExist: User matching query does not exist.
+08/02/2022 06:15:05 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 48, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 18, in create
+    collaborator = validated_data.pop('collaborator')
+KeyError: 'collaborator'
+08/02/2022 06:15:05 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/views.py", line 48, in post
+    serializer.save(user_id=user.id)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/Fundoonotes/serializers.py", line 18, in create
+    collaborator = validated_data.pop('collaborator')
+KeyError: 'collaborator'
+08/02/2022 06:15:05 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/users/views.py", line 242, in post
+    'data': serializer.data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 255, in data
+    self._data = self.to_representation(self.validated_data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/users/serializers.py", line 149, in get_tokens
+    user = User.objects.get(email=obj['email'])
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+users.models.User.DoesNotExist: User matching query does not exist.
+08/02/2022 06:15:05 PM : Fundoonotes.logger : 
+Traceback (most recent call last):
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/users/views.py", line 242, in post
+    'data': serializer.data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 255, in data
+    self._data = self.to_representation(self.validated_data)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes/users/serializers.py", line 149, in get_tokens
+    user = User.objects.get(email=obj['email'])
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ushkamalla/PycharmProjects/loginregDjango/FundooNotes/venv/lib/python3.8/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+users.models.User.DoesNotExist: User matching query does not exist.

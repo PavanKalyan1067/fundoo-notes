@@ -39,7 +39,6 @@ class CreateAPIView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
-        user = request.user
         user_id = request.user.id
         user = request.user
         try:
