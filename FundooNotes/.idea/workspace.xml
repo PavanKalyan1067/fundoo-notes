@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="629645b5-ee1e-4d19-bec3-fd57cc2f526f" name="Changes" comment="Added Fundoo Notes and Labels and users" />
+    <list default="true" id="629645b5-ee1e-4d19-bec3-fd57cc2f526f" name="Changes" comment="Added Fundoo Notes and Labels and users">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fundoo/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fundoo/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fundoonotes/tests/test_note_urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fundoonotes/tests/test_note_urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exceptions.log" beforeDir="false" afterPath="$PROJECT_DIR$/exceptions.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/tests/test_user_urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/tests/test_user_urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,10 +25,38 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="testcasesfornotes" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1659462594" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="testcasesfornotes" />
+                    <option name="lastUsedInstant" value="1659462593" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/.." />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="xo1m6iui" />
@@ -34,6 +72,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Project.color": "40ff4c",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "/home/ushkamalla/PycharmProjects/Fundoo/FundooNotes",
@@ -48,7 +87,7 @@
       <recent name="$PROJECT_DIR$/Fundoo" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.views">
+  <component name="RunManager" selected="Python tests.Python tests for Fundoonotes.tests.test_notes_views.TestNotesAPI">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="FundooNotes" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -70,7 +109,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="tests" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="FundooNotes" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -78,11 +117,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/loginauth" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/users/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/loginauth/views.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/users/tests/tests.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -91,9 +130,69 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for Fundoonotes.tests.test_notes_views.TestNotesAPI" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="FundooNotes" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Fundoonotes/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Fundoonotes.tests.test_notes_views.TestNotesAPI&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for users.tests.test_user_views" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="FundooNotes" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/users/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;users.tests.test_user_views&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for users.tests.test_user_views.TestsCasesForRegistration" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="FundooNotes" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;users.tests.test_user_views.TestsCasesForRegistration&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in test_user_views.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="FundooNotes" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/users/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/users/tests/test_user_views.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.views" />
+        <item itemvalue="Python tests.Python tests in test_user_views.py" />
+        <item itemvalue="Python tests.Python tests for users.tests.test_user_views.TestsCasesForRegistration" />
+        <item itemvalue="Python tests.Python tests for users.tests.test_user_views" />
+        <item itemvalue="Python tests.Python tests for Fundoonotes.tests.test_notes_views.TestNotesAPI" />
+        <item itemvalue="Python.tests" />
       </list>
     </recent_temporary>
   </component>

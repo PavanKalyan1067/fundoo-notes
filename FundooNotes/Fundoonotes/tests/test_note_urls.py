@@ -1,16 +1,9 @@
 from unittest import TestCase
 
 from django.urls import reverse, resolve
-
-from Fundoonotes.views import (
-    CreateAPIView,
-    ArchiveNotesAPIView,
-    AllArchiveNotesAPIView,
-    AllTrashNotesAPIView,
-    TrashNotesAPIView, AllPinNotesAPIView, PinNotesAPIView, CollaboratedNoteView,
-    LabelNoteView, UpdateNotesAPIView,
+from Fundoonotes.views import CreateAPIView, ArchiveNotesAPIView, AllArchiveNotesAPIView, AllTrashNotesAPIView, \
+    TrashNotesAPIView, AllPinNotesAPIView, PinNotesAPIView, CollaboratedNoteView, LabelNoteView, UpdateNotesAPIView, \
     DeleteAPIView, RetrieveAPIView
-)
 
 
 class TestUrls(TestCase):

@@ -3,15 +3,8 @@ from unittest import TestCase
 from django.urls import reverse, resolve
 from rest_framework_simplejwt.views import TokenRefreshView
 
-from users.views import (
-    RegisterView,
-    LogoutAPIView,
-    VerifyEmail,
-    ForgotPasswordResetEmailAPIView,
-    SetNewPasswordAPIView,
-    UserProfileView,
-    LoginAPIView
-)
+from users.views import RegisterView, LogoutAPIView, VerifyEmail, ForgotPasswordResetEmailAPIView, \
+    SetNewPasswordAPIView, UserProfileView, LoginAPIView
 
 
 class TestUrls(TestCase):

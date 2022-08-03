@@ -93,8 +93,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-print(os.environ.get('DB_PASSWORD'))
-print(os.environ.get('DB_USER'))
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
